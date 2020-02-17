@@ -1,0 +1,153 @@
+
+body{
+    background-color: black;
+    background-image:url(../YellowTree/assets/posterslogin.jpg);
+    background-size: percentage;
+    background-repeat: no-repeat;
+    background-position: center;
+   
+}
+
+
+
+nav{
+    background-color: black;
+}
+
+nav a {
+    color: #FFEF3E;
+    
+}
+
+nav a:hover {
+    color: white;
+}
+
+#loginbtn{
+    background-color: #FFEF3E;
+    color: black;
+    margin-left: 3px;
+}
+#signupbtn{
+    background-color: #FFEF3E;
+    color: black;
+    margin-left: 3px;
+}
+
+#closebtn{
+    background-color: black;
+    color: #FFEF3E;
+    margin-left: 3px;
+}
+
+#loginform{
+    background-color: #FFEF3E;
+    margin-top: 10%;
+    padding-bottom: 5%;
+    padding-top: 5%;
+    width: 30%;
+    margin-bottom: 80px;
+   
+        
+  }
+  #signupform{
+    background-color: #FFEF3E;
+    margin-top: 10%;
+    padding-bottom: 5%;
+    padding-top: 5%;
+    width: 30%;
+    margin-bottom: 80px;
+   
+        
+  }
+
+  @media only screen and (max-width: 800px) {
+      
+#loginform{
+    background-color: #FFEF3E;
+    margin-top: 10%;
+    padding-bottom: 5%;
+    padding-top: 5%;
+    width: 70%;
+    margin-bottom: 100px;
+   
+        
+  }
+  #signupform{
+    background-color: #FFEF3E;
+    margin-top: 10%;
+    padding-bottom: 5%;
+    padding-top: 5%;
+    width: 70%;
+    margin-bottom: 100px;
+   
+        
+  }
+
+  #formicon{
+      display: none;
+  }
+
+  #loginbtn{
+    background-color: #FFEF3E;
+    color: black;
+    
+}
+#signupbtn{
+    background-color: #FFEF3E;
+    color: black;
+   
+}
+   
+  }
+   
+
+
+#submitbtn{
+    background-color: black;
+    color: #FFEF3E;
+}
+
+.form-control{
+    background-color: black;
+    border-color: black;
+    
+}
+
+
+
+.form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color:#FFEF3E;
+    opacity: 1; /* Firefox */
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color:#FFEF3E;
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color:#FFEF3E;
+  }
+
+.form-control:focus {
+    background-color: black;
+    color: #FFEF3E;
+
+}
+.navbar-toggler-icon{
+    background-image: url(../YellowTree/assets/iconfinder-icon.svg);
+    
+}
+footer{
+    background-color: #FFEF3E;
+}
+
+.card{
+    background-color: #FFEF3E;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.card a {
+    color:black;
+}
