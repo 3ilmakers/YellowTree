@@ -162,6 +162,15 @@ footer{
     border-bottom-color:var(--yellowtree) ;
 }
 
+.searchbtn::placeholder{
+    color: #FFEF3E;
+}
+
+.searchbtn::focus{
+    color: #FFEF3E;
+    background-color: black;
+}
+
 #lookupbtn{
     background-color: black;
     color: var(--yellowtree);
