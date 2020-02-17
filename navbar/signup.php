@@ -8,7 +8,7 @@ $type ="user";
 $cnnx = new PDO('mysql:dbname=yellowtree;host=localhost','yellowtree','yellow');
 $sql = $cnnx -> prepare( "INSERT INTO `users` (`username`, `email`, `firstname`, `lastname`, `password`, `type`) VALUES (:username, :email, :firstname, :lastname, :password, :type);");
 $sql -> execute(['username' => $username,'email' => $email, 'firstname' => $firstname, 'lastname' => $lastname, 'password' => $password, 'type' => $type]);
-header('location: http://localhost/Final_YellowTree/YellowTree/navbar/navbar.html');
+header('location: navbar.php');
 $cnnx = null ;
 
 
