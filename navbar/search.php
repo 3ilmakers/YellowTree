@@ -6,5 +6,5 @@ foreach($cnnx -> $sql as $row){
 
 }
 
->
+?>
 
