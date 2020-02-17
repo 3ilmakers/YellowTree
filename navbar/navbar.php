@@ -46,15 +46,37 @@
           <form class="form-inline my-2 my-lg-0">
             
           </form>
-          <form class="form-inline my-2 my-lg-0">
-            <button id="loginbtn" class="btn my-2 my-sm-0 btn-outline" type="button" data-toggle="modal"
-              data-target="#loginModal">Login</a>
-          </form>
-          <form class="form-inline my-2 my-lg-0">
-            <button id="signupbtn" class="btn my-2 my-sm-0 btn-outline" type="button" data-toggle="modal"
-              data-target="#signupModal">Sign Up</a>
-          </form>
+          <?php
+          session_start();
+      if(isset($_SESSION['username']) && isset($_SESSION['type'])){
+        echo " <form action=\"logout.php\" class=\"form-inline my-2 my-lg-0\">
+        <button id=\"logoutbtn\" class=\"btn my-2 my-sm-0 btn-outline\" type=\"submit\">Log Out</a>
+      </form>";
+      if($_SESSION['type'] == "admin"){
+        echo " <form action=\"logout.php\" class=\"form-inline my-2 my-lg-0\">
+        <button id=\"dashboardbtn\" class=\"btn my-2 my-sm-0 btn-outline\" type=\"button\"><i class=\"fas fa-chart-line\"></i></a>
+      </form>";
 
+        }
+        else{
+          echo " <form action=\"logout.php\" class=\"form-inline my-2 my-lg-0\">
+        <button id=\"myaccountbtn\" class=\"btn my-2 my-sm-0 btn-outline\" type=\"button\"><i class=\"fas fa-user\"></i></a>
+      </form>";
+
+
+        }
+      }
+      else{
+        echo "<form class=\"form-inline my-2 my-lg-0\">
+            <button id=\"loginbtn\" class=\"btn my-2 my-sm-0 btn-outline\" type=\"button\" data-toggle=\"modal\"
+              data-target=\"#loginModal\">Login</a>
+          </form>
+          <form class=\"form-inline my-2 my-lg-0\">
+            <button id=\"signupbtn\" class=\"btn my-2 my-sm-0 btn-outline\" type=\"button\" data-toggle=\"modal\"
+              data-target=\"#signupModal\">Sign Up</a>
+          </form>";
+      }
+    ?>
         </div>
       </nav>
     </header>
@@ -66,6 +88,7 @@
   
       }
     </script>
+    
     <div class="modal" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   
   
@@ -134,6 +157,7 @@
   
 
     <!-- Optional JavaScript -->
+    <script src="https://kit.fontawesome.com/4dded3e0b7.js"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

@@ -168,3 +168,25 @@ footer{
     border-style: solid;
     border-color: var(--yellowtree);
 }
+
+#logoutbtn{
+    background-color: #FFEF3E;
+    color: black;
+    margin-left: 3px;
+
+}
+
+#dashboardbtn{
+    background-color: #FFEF3E;
+    color: black;
+    margin-left: 3px;
+
+
+}
+
+ #myaccountbtn{
+    background-color: #FFEF3E;
+    color: black;
+    margin-left: 3px;
+
+ }

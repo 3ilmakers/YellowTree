@@ -1,12 +1,12 @@
 <?php 
  session_start();
  if(isset($_SESSION['username']) && isset($_SESSION['type'])){
-     $user = $_SESSION['username'];
      session_destroy();
+     header('location: navbar.php');
      
-     echo "goodbye $user";
+    
 
  }
  else {
-     echo "you are not logged in atm";
+    header('location: navbar.php');
  }

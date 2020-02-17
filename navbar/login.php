@@ -2,7 +2,7 @@
 
 session_start();
 if(isset($_SESSION['type'])){
-    header('location: navbar.html');
+    header('location: navbar.php');
 }
 else{
     $email = $_POST['email'];
@@ -16,7 +16,7 @@ else{
          $_SESSION['username'] = $types['username'] ;
         }
         if(isset($_SESSION['type']) && isset($_SESSION['username'])){
-            header('location: navbar.html');
+            header('location: navbar.php');
             $cnnx = null;
         }
     }
