@@ -1,4 +1,7 @@
 
+:root{
+    --yellowtree : #FFEF3E;
+}
 body{
     background-color: black;
     background-image:url(../YellowTree/assets/posterslogin.jpg);
@@ -150,4 +153,18 @@ footer{
 
 .card a {
     color:black;
+}
+
+.searchbtn{
+    background-color: black;
+    color: var(--yellowtree);
+    border-bottom-style: solid;
+    border-bottom-color:var(--yellowtree) ;
+}
+
+#lookupbtn{
+    background-color: black;
+    color: var(--yellowtree);
+    border-style: solid;
+    border-color: var(--yellowtree);
 }
