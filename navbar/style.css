@@ -8,7 +8,8 @@ body{
     background-size: percentage;
     background-repeat: no-repeat;
     background-position: center;
-   
+
+
 }
 
 
@@ -19,7 +20,7 @@ nav{
 
 nav a {
     color: #FFEF3E;
-    
+
 }
 
 nav a:hover {
@@ -50,8 +51,8 @@ nav a:hover {
     padding-top: 5%;
     width: 30%;
     margin-bottom: 80px;
-   
-        
+
+
   }
   #signupform{
     background-color: #FFEF3E;
@@ -60,12 +61,12 @@ nav a:hover {
     padding-top: 5%;
     width: 30%;
     margin-bottom: 80px;
-   
-        
+
+
   }
 
   @media only screen and (max-width: 800px) {
-      
+
 #loginform{
     background-color: #FFEF3E;
     margin-top: 10%;
@@ -73,8 +74,8 @@ nav a:hover {
     padding-top: 5%;
     width: 70%;
     margin-bottom: 100px;
-   
-        
+
+
   }
   #signupform{
     background-color: #FFEF3E;
@@ -83,8 +84,8 @@ nav a:hover {
     padding-top: 5%;
     width: 70%;
     margin-bottom: 100px;
-   
-        
+
+
   }
 
   #formicon{
@@ -94,16 +95,16 @@ nav a:hover {
   #loginbtn{
     background-color: #FFEF3E;
     color: black;
-    
+
 }
 #signupbtn{
     background-color: #FFEF3E;
     color: black;
-   
+
 }
-   
+
   }
-   
+
 
 
 .submitbtn{
@@ -114,7 +115,7 @@ nav a:hover {
 .form-control{
     background-color: black;
     border-color: black;
-    
+
 }
 
 
@@ -123,11 +124,11 @@ nav a:hover {
     color:#FFEF3E;
     opacity: 1; /* Firefox */
   }
-  
+
   :-ms-input-placeholder { /* Internet Explorer 10-11 */
     color:#FFEF3E;
   }
-  
+
   ::-ms-input-placeholder { /* Microsoft Edge */
     color:#FFEF3E;
   }
@@ -139,7 +140,7 @@ nav a:hover {
 }
 .navbar-toggler-icon{
     background-image: url(../assets/iconfinder-icon.svg);
-    
+
 }
 footer{
     background-color: #FFEF3E;
@@ -160,7 +161,7 @@ footer{
     color: var(--yellowtree);
     border-bottom-style: solid;
     border-bottom-color:var(--yellowtree) ;
-    
+
 
 }
 

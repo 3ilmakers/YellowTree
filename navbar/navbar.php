@@ -12,7 +12,7 @@
   </head>
   <body>
     <header>
-      <nav class="navbar sticky-top navbar-expand-lg ">
+      <nav class="navbar fixed-top navbar-expand-lg ">
         <a class="navbar-brand" href="./">
           <img src="./assets/logo.jpg" width="40" height="40" class="d-inline-block align-top" alt="">
 
