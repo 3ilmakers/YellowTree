@@ -9,8 +9,8 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="./dashboard/dashboard.css">
-  <script src="https://cdn.anychart.com/js/8.0.1/anychart-core.min.js"></script>
-  <script src="https://cdn.anychart.com/js/8.0.1/anychart-pie.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+
 
   <title>YellowTree</title>
 </head>
@@ -109,11 +109,11 @@ if (isset($_SESSION['type']) && $_SESSION['type'] == "admin") {
               $sql = $cnnx->prepare("SELECT * FROM `USERS` WHERE username LIKE :username ");
               $sql->execute([':username' =>  $username]);
               $users = $sql->fetchAll();
-
+              $usersarray = null;
               foreach ($users as $user) {
                 $usersarray[] = new user($user['username'], $user['firstname'], $user['lastname'], $user['email'], $user['type'], $user['password']);
               }
-
+              if($usersarray != null){
               if (sizeof($usersarray) > 3) {
                 foreach ($usersarray as $usertodisplay) {
                   $count++;
@@ -128,6 +128,7 @@ if (isset($_SESSION['type']) && $_SESSION['type'] == "admin") {
                 }
               }
             }
+          }
             ?>
 
 
@@ -139,6 +140,9 @@ if (isset($_SESSION['type']) && $_SESSION['type'] == "admin") {
 
 
         <div class="yellowhr"></div>
+        <div width="40vh" height="40vh" class="container">
+        <canvas id="myChart" width="40vh" height="40vh"></canvas>
+        </div>
         <?php
         $nbadmin = 0;
         $nbuser = 0;
@@ -158,29 +162,36 @@ if (isset($_SESSION['type']) && $_SESSION['type'] == "admin") {
           $nbuser = $nbuser + $user['nbuser'];
         }
 
-        echo "<script> anychart.onDocumentReady(function() {
-
-            // set the data
-            var data = [
-                {x: \"Admin\", value:" . $nbadmin . "},
-                {x: \"User\", value:" . $nbuser . "}
-
-            ];
-
-            // create the chart
-            var chart = anychart.pie();
-
-            // set the chart title
-            chart.title(\"User type\");
-
-            // add the data
-            chart.data(data);
-
-            // display the chart in the container
-            chart.container('chartcontainer');
-            chart.draw();
-
-          }); </script>";
+        echo "<script>
+        console.log(\"herro\");
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Admin', 'User'],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [".$nbadmin." , ".$nbuser."],
+                    backgroundColor: [
+                        'rgba(255, 239, 62, 0.2)',
+                        'rgba(255, 255, 255, 0.2)'
+                        
+                    ],
+                    borderColor: [
+                        'rgba(255, 239, 62, 1)',
+                        'rgba(255, 255, 255, 1)'
+                      
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                   
+                }
+            }
+        });
+        </script>";
 
 
 
@@ -190,7 +201,7 @@ if (isset($_SESSION['type']) && $_SESSION['type'] == "admin") {
 
 
         ?>
-        <div id="chartcontainer" style="width: 100%; height: 100%"></div>
+        
       </div>
     </div>
   </div>
@@ -217,7 +228,7 @@ if (isset($_SESSION['type']) && $_SESSION['type'] == "admin") {
 
 <!-- Optional JavaScript -->
 
-<script src="dashboard.js"></script>
+
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://kit.fontawesome.com/4dded3e0b7.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
