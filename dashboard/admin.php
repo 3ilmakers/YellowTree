@@ -8,6 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="../dashboard/dashboard.css">
+    
     <title>YellowTree</title>
   </head>
   <body>
@@ -48,7 +49,7 @@
 
           <div class="text-center">
             <div class="row">
-            <?php 
+           <?php 
      class user{
        public $uname ;
        public $fname ;
@@ -106,7 +107,7 @@ if($_SESSION['type'] == "admin"){
     
     var_dump($usertodisplay);
     foreach($usersarray as $usertodisplay){
-      $usertodisplay -> display();
+     // $usertodisplay -> display();
     }
     $cnnx = null ;
 
@@ -114,7 +115,7 @@ if($_SESSION['type'] == "admin"){
 else {
     echo "get lost son of a bitch"; 
 }
-    ?>
+    ?> 
              
              
               
@@ -125,6 +126,56 @@ else {
          
         </div>
         <div class="yellowhr"></div>
+        <?php
+          $nbadmin = 0;
+          $nbuser = 0;
+          $cnnx = new PDO('mysql:dbname=yellowtree;host=localhost','yellowtree','yellow');
+          $sql = $cnnx -> prepare("SELECT COUNT(username) as nbadmin FROM users WHERE type = \"admin\";");
+          $sql -> execute();
+          $admins = $sql -> fetchAll();
+          foreach($admins as $admin){
+            $nbadmin =$nbadmin + $admin['nbadmin'];
+          }
+          $sql = null;
+          $sql = $cnnx -> prepare("SELECT COUNT(username) as nbuser FROM users WHERE type = \"user\";");
+          $sql -> execute();
+          $users = $sql -> fetchAll();
+          //print_r($users);
+          foreach($users as $user){
+            $nbuser = $nbuser + $user['nbuser'];
+          }
+          echo "<script type=\"text/javascript\" src=\"https://www.gstatic.com/charts/loader.js\"></script>" ;
+          echo "<script type=\"text/javascript\">
+          google.charts.load('current', {'packages':['corechart']});
+          google.charts.setOnLoadCallback(drawChart);
+    
+          function drawChart() {
+    
+            var data = google.visualization.arrayToDataTable([
+              ['Users', 'Type of users'],
+              ['User', '".$nbuser."'],
+              ['Admin', '".$nbadmin."']
+            ]);
+    
+            var options = {
+              title: 'User Repartition'
+            };
+    
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+    
+            chart.draw(data, options);
+          }
+        </script>
+        <div id=\"piechart\" style=\"width: 900px; height: 500px;\"></div>"
+
+
+
+
+
+
+        
+        
+        ?>
       </div>
     </div>
   </div>
@@ -154,6 +205,7 @@ else {
   </div>
 
     <!-- Optional JavaScript -->
+    
     <script src="dashboard.js"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://kit.fontawesome.com/4dded3e0b7.js"></script>
