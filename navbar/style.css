@@ -160,6 +160,8 @@ footer{
     color: var(--yellowtree);
     border-bottom-style: solid;
     border-bottom-color:var(--yellowtree) ;
+    
+
 }
 
 .searchbtn::placeholder{

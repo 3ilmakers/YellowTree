@@ -95,7 +95,7 @@
     border-radius: 60%;
 }
 
-#userdesc{
+.userdesc{
     margin-bottom: 0;
 }
 
@@ -167,4 +167,8 @@ li{
     background-color: black;
     color: var(--yellowtree);
 
+}
+
+#dashboardbtn{
+    display: inline-block;
 }

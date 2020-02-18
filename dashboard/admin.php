@@ -11,6 +11,12 @@
     <title>YellowTree</title>
   </head>
   <body>
+    <?php 
+    if(isset($_SESSION['type']) && $_SESSION['type'] == "admin"){}
+    else{
+      header('location: ../navbar/navbar.php');
+    }
+    ?>
     <div class="container-fluid">
     <div  class="row">
       <div id="sidebar" class="col-3 rounded">
@@ -44,9 +50,9 @@
               <div class="col-4">
                 <div id="containeruser" data-toggle="modal" data-target="#modifyusertype" class="text-center rounded">
                   <div class="hr"></div>
-                  <i id="userimg" class="fas fa-user"></i>
+                  <i  class="fas fa-user userimg"></i>
                   <div class="hr"></div>
-                  <p id="username" class="userdesc">Username</p>
+                  <p  class="userdesc username">Username</p>
                   <div class="hr"></div>
                   <p class="userdesc">First Name</p>
                   <div class="hr"></div>
@@ -63,9 +69,9 @@
               <div class="col-4">
                 <div id="containeruser" data-toggle="modal" data-target="#modifyusertype" class="text-center rounded">
                   <div class="hr"></div>
-                  <i id="userimg" class="fas fa-user"></i>
+                  <i  class="fas fa-user userimg"></i>
                   <div class="hr"></div>
-                  <p  id="username" class="userdesc">Username</p>
+                  <p  class="userdesc username">Username</p>
                   <div class="hr"></div>
                   <p class="userdesc">First Name</p>
                   <div class="hr"></div>
@@ -80,11 +86,11 @@
                 </div>
               </div>
               <div class="col-4">
-                <div id="containeruser"  data-toggle="modal" data-target="#modifyusertype" class="text-center rounded">
+                <div id="containeruser" data-toggle="modal" data-target="#modifyusertype" class="text-center rounded">
                   <div class="hr"></div>
-                  <i id="userimg" class="fas fa-user"></i>
+                  <i  class="fas fa-user userimg"></i>
                   <div class="hr"></div>
-                  <p id="username" class="userdesc">Username</p>
+                  <p  class="userdesc username">Username</p>
                   <div class="hr"></div>
                   <p class="userdesc">First Name</p>
                   <div class="hr"></div>
@@ -98,6 +104,7 @@
                   <div class="hr"></div>
                 </div>
               </div>
+              
              
             </div>
             

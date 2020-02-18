@@ -41,7 +41,7 @@
           </ul>
           <form method="GET" action="search.php" class="form-inline my-2 my-lg-0">
             <input  class="btn my-2 my-sm-0 btn-outline searchbtn" name="search" type="text">
-            <button id="lookupbtn"  type="submit" class="btn my-2 my-sm-0 btn-outline">search</button>
+            <button id="lookupbtn"  type="submit" class="btn my-2 my-sm-0 btn-outline"><i style="color:#FFEF3E;"class="fas fa-search"></i></button>
           </form>
           <form class="form-inline my-2 my-lg-0">
             
@@ -53,9 +53,13 @@
         <button id=\"logoutbtn\" class=\"btn my-2 my-sm-0 btn-outline\" type=\"submit\">Log Out</a>
       </form>";
       if($_SESSION['type'] == "admin"){
-        echo " <form action=\"logout.php\" class=\"form-inline my-2 my-lg-0\">
-        <button id=\"dashboardbtn\" class=\"btn my-2 my-sm-0 btn-outline\" type=\"button\"><i class=\"fas fa-chart-line\"></i></a>
+        echo " <form  class=\"form-inline my-2 my-lg-0\">
+        <button id=\"dashboardbtn\" onclick=\"redirect()\"  href=\"../dashboard/admin.php\" class=\"btn my-2 my-sm-0 btn-outline\" type=\"button\"><i class=\"fas fa-chart-line\"></i></button>
       </form>";
+      echo " <form class=\"form-inline my-2 my-lg-0\">
+      <button id=\"myaccountbtn\" class=\"btn my-2 my-sm-0 btn-outline\" type=\"button\"><i class=\"fas fa-user\"></i></a>
+    </form>";
+
 
         }
         else{
@@ -81,14 +85,6 @@
       </nav>
     </header>
   
-    <script>
-      function closemodal() {
-        console.log($('#loginModal'));
-        $('#loginModal').modal();
-  
-      }
-    </script>
-    
     <div class="modal" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   
   
@@ -101,11 +97,11 @@
           </div>
           <br>
           <div class="form-group">
-            <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+            <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Enter email" require>
             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
           </div>
           <div class="form-group">
-            <input type="password" class="form-control" name="password" placeholder="Password">
+            <input type="password" class="form-control" name="password" placeholder="Password" require>
           </div>
           <br>
           <button  type="submit" class="btn btn-dark submitbtn">Login</button>
@@ -130,20 +126,20 @@
           </div>
           <br>
           <div class="form-group">
-            <input type="text" class="form-control" name="username" placeholder="Username">
+            <input type="text" class="form-control" name="username" placeholder="Username" require>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" name="firstname" placeholder="First Name">
+            <input type="text" class="form-control" name="firstname" placeholder="First Name" require>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" name="lastname" placeholder="Last Name">
+            <input type="text" class="form-control" name="lastname" placeholder="Last Name" require>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+            <input type="text" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Enter email" require>
             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
           </div>
           <div class="form-group">
-            <input type="password" class="form-control" name="password" placeholder="Password">
+            <input type="password" class="form-control" name="password" placeholder="Password" require>
           </div>
   
           <button  type="submit" class="btn btn-dark submitbtn">Sign Up</button>
@@ -153,8 +149,13 @@
         </form>
       </div>
     </div>
-  
-  
+  <script>
+   function redirect() {
+        console.log("started");
+        location.href = "../dashboard/admin.php";
+    };
+  </script>
+    
 
     <!-- Optional JavaScript -->
     <script src="https://kit.fontawesome.com/4dded3e0b7.js"></script>
