@@ -60,13 +60,13 @@
        public $type ;
        public $pword;
 
-        function construct( $username , $firstname , $lastname, $email, $type, $pword){
-          $this -> uname = $username;
-          $this -> fname = $firstname;
-          $this -> lname = $lastname;
-          $this -> email = $email;
-          $this -> type = $type;
-          $this -> pword = $pword;
+        function __construct( $username , $firstname , $lastname, $email, $type, $pword){
+          $this->uname = $username;
+          $this->fname = $firstname;
+          $this->lname = $lastname;
+          $this->email = $email;
+          $this->type = $type;
+          $this->pword = $pword;
         }
 
         function display() {
@@ -95,21 +95,24 @@
 if($_SESSION['type'] == "admin"){
     $username = $_GET['username'];
     $username = "%".$username."%" ;
-    $usersarray[] = new user("","","","","","");
+    //$usersarray[] = new user("","","","","","");
+    //echo $_GET['username'];
     $cnnx = new PDO('mysql:dbname=yellowtree;host=localhost','yellowtree','yellow');
-    $sql = $cnnx -> prepare("SELECT * FROM `users` WHERE username LIKE :username ");
+    $sql = $cnnx -> prepare("SELECT * FROM `USERS` WHERE username LIKE :username ");
     $sql -> execute([':username' =>  $username]);
     $users = $sql -> fetchAll();
+
     foreach($users as $user){
+
       $usersarray[] = new user($user['username'] , $user['firstname'], $user['lastname'], $user['email'], $user['type'],$user['password']);
 
 
 
     }
 
-    var_dump($usertodisplay);
+  
     foreach($usersarray as $usertodisplay){
-     // $usertodisplay -> display();
+      $usertodisplay -> display();
     }
     $cnnx = null ;
 
