@@ -8,7 +8,7 @@ else{
     $email = $_POST['email'];
     $password = $_POST['password'];
     $cnnx = new PDO('mysql:dbname=yellowtree;host=localhost','yellowtree','yellow');
-    $sql = $cnnx -> prepare("SELECT type , username FROM `users` WHERE email = :email AND password = :password ");
+    $sql = $cnnx -> prepare("SELECT type , username FROM `USERS` WHERE email = :email AND password = :password ");
     $sql -> execute([':email' => $email, ':password' => $password]);
     $type = $sql -> fetchAll();
     foreach($type as $types){

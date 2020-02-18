@@ -13,7 +13,7 @@
   <body>
     <header>
       <nav class="navbar sticky-top navbar-expand-lg ">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="./">
           <img src="./assets/logo.jpg" width="40" height="40" class="d-inline-block align-top" alt="">
 
         </a>
@@ -26,17 +26,17 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="./">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">News</a>
+              <a class="nav-link" href="./">News</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Movies</a>
+              <a class="nav-link" href="./">Movies</a>
             </li>
-            <li class="nav-item">
+          <!--  <li class="nav-item">
               <a class="nav-link" href="#">Tv Shows</a>
-            </li>
+            </li>-->
 
           </ul>
           <form method="GET" action="./navbar/search.php" class="form-inline my-2 my-lg-0">
@@ -152,11 +152,13 @@
   <script>
    function redirect() {
         console.log("started");
-        location.href = "./dashboard/admin.php";
+        location.href = "./?dashboard=admin";
+        //location.href = "./dashboard/admin.php";
     };
     function redirectaccount() {
         console.log("started");
-        location.href = "./dashboard/user.php";
+        //location.href = "./dashboard/user.php";
+        location.href = "./?dashboard=user";
     };
   </script>
 
