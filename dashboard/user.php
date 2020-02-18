@@ -11,42 +11,24 @@
     <title>YellowTree</title>
   </head>
   <body>
-    <div class="container-fluid rounded" id="myaccount">
-      <div class="text-center">
-        <i id="userhead" class="fas fa-user"></i>
-        <h1>My Account</h1>
-        <div class="container">
-          <form>
-          <div class="hr"></div>
-          <p>Username</p>
-          <input class="inputinverted rounded" type="text">
-          <br>
-          <div class="hr"></div>
-          <p>First Name</p>
-          <input class="inputinverted rounded" type="text">
-          <br>
-          <div class="hr"></div>
-          <p>Last Name</p>
-          <input class="inputinverted rounded" type="text">
-          <br>
-          <div class="hr"></div>
-          <p>Email</p>
-          <input class="inputinverted rounded" type="email">
-          <br>
-          <div class="hr"></div>
-          <p>Password</p>
-          <input class="inputinverted rounded" type="password">
-          <br>
-          <div class="hr"></div>
-          <br>
-          <input class="btninverted rounded" type="submit">
-          <br>
-          <div class="hr"></div>
-        </form>
-        </div>
-      </div>
+  <?php
+  session_start();
+  if(isset($_SESSION['username'])){
+    $username = "";
+    $email = "";
+    $firstname = "";
+    $lastname = "";
+    $password ="";
+    $cnnx = new PDO('mysql:dbname=yellowtree;host=localhost','yellowtree','yellow');
+    $sql = $cnnx -> prepare("SELECT * FROM `users` WHERE username = :username ";);
+    $sql -> execute([':username' => $_SESSION['username']]);
+    $users = $sql -> fetchAll();
+    foreach($users as $user);
 
-    </div>
+  }
+  else{
+    header('location: ../navbar/navbar.php');
+  }
 
     <!-- Optional JavaScript -->
     <script src="dashboard.js"></script>
