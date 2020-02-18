@@ -36,7 +36,7 @@
       <i id=\"userhead\" class=\"fas fa-user\"></i>
       <h1>My Account</h1>
       <div class=\"container\">
-        <form action=\"./?dashboard=user\" method=\"POST\">
+        <form action=\"./dashboard/update.php\" method=\"POST\">
         <div class=\"hr\"></div>
         <p>Username</p>
         <p>@".$username."</p>
