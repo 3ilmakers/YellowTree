@@ -8,6 +8,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="../dashboard/dashboard.css">
+    <script src="https://cdn.anychart.com/js/8.0.1/anychart-core.min.js"></script>
+    <script src="https://cdn.anychart.com/js/8.0.1/anychart-pie.min.js"></script>
     
     <title>YellowTree</title>
   </head>
@@ -144,29 +146,30 @@ else {
           foreach($users as $user){
             $nbuser = $nbuser + $user['nbuser'];
           }
-          echo "<script type=\"text/javascript\" src=\"https://www.gstatic.com/charts/loader.js\"></script>" ;
-          echo "<script type=\"text/javascript\">
-          google.charts.load('current', {'packages':['corechart']});
-          google.charts.setOnLoadCallback(drawChart);
-    
-          function drawChart() {
-    
-            var data = google.visualization.arrayToDataTable([
-              ['Users', 'Type of users'],
-              ['User', '".$nbuser."'],
-              ['Admin', '".$nbadmin."']
-            ]);
-    
-            var options = {
-              title: 'User Repartition'
-            };
-    
-            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-    
-            chart.draw(data, options);
-          }
-        </script>
-        <div id=\"piechart\" style=\"width: 900px; height: 500px;\"></div>"
+        
+          echo "<script> anychart.onDocumentReady(function() {
+
+            // set the data
+            var data = [
+                {x: \"Admin\", value:".$nbadmin."},
+                {x: \"User\", value:".$nbuser."}
+               
+            ];
+          
+            // create the chart
+            var chart = anychart.pie();
+          
+            // set the chart title
+            chart.title(\"User type\");
+          
+            // add the data
+            chart.data(data);
+          
+            // display the chart in the container
+            chart.container('chartcontainer');
+            chart.draw();
+          
+          }); </script>";
 
 
 
@@ -176,6 +179,7 @@ else {
         
         
         ?>
+        <div id="chartcontainer" style="width: 100%; height: 100%"></div>
       </div>
     </div>
   </div>
