@@ -5,6 +5,7 @@
  html body{
     background-color: black;
     height: 100%;
+    
 }
 .row{
     height: 100%;
@@ -28,7 +29,7 @@
     height:100%;
     padding-top: 5%;
     z-index: 1;
-    position: fixed;
+    position:fixed;
 }
 
 #sidebar ul{
@@ -47,12 +48,17 @@
     display: inline-block;
     top:0;
     right: 0;
-    position: fixed;
+   
+    position: flex;
+    
+
+
     
 }
 
 #mainpanel input{
     margin-top: 3%;
+   
 }
 
 #maintext{
@@ -105,6 +111,9 @@
 
 #userslider{
     margin-top: 2%;
+    overflow-y: scroll;
+    flex-direction: column;
+    
 }
 
 li{
