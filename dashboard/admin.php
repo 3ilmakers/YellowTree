@@ -5,17 +5,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<<<<<<< HEAD
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="../dashboard/dashboard.css">
     <script src="https://cdn.anychart.com/js/8.0.1/anychart-core.min.js"></script>
     <script src="https://cdn.anychart.com/js/8.0.1/anychart-pie.min.js"></script>
     
-=======
-    <link rel="stylesheet" href="./dashboard/dashboard.css">
-
->>>>>>> 5eb7577030739113f2338282731bac52fa013d41
     <title>YellowTree</title>
   </head>
   <body>
@@ -151,7 +146,6 @@ else {
           foreach($users as $user){
             $nbuser = $nbuser + $user['nbuser'];
           }
-<<<<<<< HEAD
         
           echo "<script> anychart.onDocumentReady(function() {
 
@@ -176,31 +170,6 @@ else {
             chart.draw();
           
           }); </script>";
-=======
-          echo "<script type=\"text/javascript\" src=\"https://www.gstatic.com/charts/loader.js\"></script>" ;
-          echo "<script type=\"text/javascript\">
-          google.charts.load('current', {'packages':['corechart']});
-          google.charts.setOnLoadCallback(drawChart);
-
-          function drawChart() {
-
-            var data = google.visualization.arrayToDataTable([
-              ['Users', 'Type of users'],
-              ['User', '".$nbuser."'],
-              ['Admin', '".$nbadmin."']
-            ]);
-
-            var options = {
-              title: 'User Repartition'
-            };
-
-            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-            chart.draw(data, options);
-          }
-        </script>
-        <div id=\"piechart\" style=\"width: 900px; height: 500px;\"></div>"
->>>>>>> 5eb7577030739113f2338282731bac52fa013d41
 
 
 
