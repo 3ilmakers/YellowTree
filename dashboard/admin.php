@@ -43,8 +43,9 @@
         <h4 id="maintext">Change users type</h4>
 
         <form method="GET" action="<?php echo $_SERVER["PHP_SELF"];?>" class="text-center rounded">
-        <input type="text" id="input" class="rounded" name="username" placeholder="Enter Username">
-        <input type="submit" id="btn" value="Search" class="rounded">
+          <input type="text" id="input" class="rounded" name="username" placeholder="Enter Username">
+           <input type="hidden" name="dashboard" value="admin" />
+          <input type="submit" id="btn" value="Search" class="rounded">
         </form>
         <div class="yellowhr"></div>
         <div id="userslider" class="container rounded">
@@ -103,14 +104,11 @@ if($_SESSION['type'] == "admin"){
     $users = $sql -> fetchAll();
 
     foreach($users as $user){
-
       $usersarray[] = new user($user['username'] , $user['firstname'], $user['lastname'], $user['email'], $user['type'],$user['password']);
-
-
 
     }
 
-  
+
     foreach($usersarray as $usertodisplay){
       $usertodisplay -> display();
     }
