@@ -57,14 +57,14 @@
         <button id=\"dashboardbtn\" onclick=\"redirect()\"  href=\"../dashboard/admin.php\" class=\"btn my-2 my-sm-0 btn-outline\" type=\"button\"><i class=\"fas fa-chart-line\"></i></button>
       </form>";
       echo " <form class=\"form-inline my-2 my-lg-0\">
-      <button id=\"myaccountbtn\" class=\"btn my-2 my-sm-0 btn-outline\" type=\"button\"><i class=\"fas fa-user\"></i></a>
+      <button onclick=\"redirectaccount()\" id=\"myaccountbtn\" redirectid=\"myaccountbtn\" class=\"btn my-2 my-sm-0 btn-outline\" type=\"button\"><i class=\"fas fa-user\"></i></a>
     </form>";
 
 
         }
         else{
           echo " <form action=\"logout.php\" class=\"form-inline my-2 my-lg-0\">
-        <button id=\"myaccountbtn\" class=\"btn my-2 my-sm-0 btn-outline\" type=\"button\"><i class=\"fas fa-user\"></i></a>
+        <button onclick=\"redirectaccount()\" id=\"myaccountbtn\" class=\"btn my-2 my-sm-0 btn-outline\" type=\"button\"><i class=\"fas fa-user\"></i></a>
       </form>";
 
 
@@ -153,6 +153,10 @@
    function redirect() {
         console.log("started");
         location.href = "../dashboard/admin.php";
+    };
+    function redirectaccount() {
+        console.log("started");
+        location.href = "../dashboard/user.php";
     };
   </script>
     
