@@ -15,7 +15,7 @@
   </head>
   <body>
     <?php
-    session_start();
+    
     if(isset($_SESSION['type']) && $_SESSION['type'] == "admin"){}
     else{
       header('location: ../index.php');
@@ -42,7 +42,7 @@
 
         <h4 id="maintext">Change users type</h4>
 
-        <form method="GET" action="<?php echo $_SERVER["PHP_SELF"];?>" class="text-center rounded">
+        <form method="GET" action="./dashboard/admin.php" class="text-center rounded">
         <input type="text" id="input" class="rounded" name="username" placeholder="Enter Username">
         <input type="submit" id="btn" value="Search" class="rounded">
         </form>
@@ -109,7 +109,7 @@ if($_SESSION['type'] == "admin"){
 
     var_dump($usertodisplay);
     foreach($usersarray as $usertodisplay){
-     // $usertodisplay -> display();
+      $usertodisplay -> display();
     }
     $cnnx = null ;
 
