@@ -82,17 +82,17 @@ if (isset($_SESSION['type']) && $_SESSION['type'] == "admin") {
             <div class=\"hr\"></div>
             <i  class=\"fas fa-user userimg\"></i>
             <div class=\"hr\"></div>
-            <p  class=\"userdesc username\">Username :" . $this->uname . "</p>
+            <p  class=\"userdesc username\">Username : " . $this->uname . "</p>
             <div class=\"hr\"></div>
-            <p class=\"userdesc\">First Name :" . $this->fname . "</p>
+            <p class=\"userdesc\">First Name : " . $this->fname . "</p>
             <div class=\"hr\"></div>
-            <p class=\"userdesc\">Last Name :" . $this->lname . "</p>
+            <p class=\"userdesc\">Last Name : " . $this->lname . "</p>
             <div class=\"hr\"></div>
-            <p class=\"userdesc\">Email :" . $this->email . " </p>
+            <p class=\"userdesc\">Email : " . $this->email . " </p>
             <div class=\"hr\"></div>
-            <p class=\"userdesc\">Password :" . $this->pword . "</p>
+            <p class=\"userdesc\">Password : " . $this->pword . "</p>
             <div class=\"hr\"></div>
-            <p class=\"userdesc\">Type :" . $this->type . "</p>
+            <p class=\"userdesc\">Type : " . $this->type . "</p>
             <div class=\"hr\"></div>
           </div>
         </div>";
@@ -100,7 +100,16 @@ if (isset($_SESSION['type']) && $_SESSION['type'] == "admin") {
             }
 
             if ($_SESSION['type'] == "admin") {
+              if(isset($_GET['username'])){
               $username = $_GET['username'];
+              if($username == ""){
+                $username = "*********";
+              }
+              if($username == ":all"){
+                $username = "";
+              }
+              
+              
               $username = "%" . $username . "%";
               $count = 0;
               //$usersarray[] = new user("","","","","","");
@@ -129,6 +138,7 @@ if (isset($_SESSION['type']) && $_SESSION['type'] == "admin") {
               }
             }
           }
+        }
             ?>
 
 
