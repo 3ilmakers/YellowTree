@@ -176,7 +176,7 @@ if (isset($_SESSION['type']) && $_SESSION['type'] == "admin") {
         console.log(\"herro\");
         var ctx = document.getElementById('myChart').getContext('2d');
         var myChart = new Chart(ctx, {
-            type: 'pie',
+            type: 'doughnut',
             data: {
                 labels: ['Admin', 'User'],
                 datasets: [{
