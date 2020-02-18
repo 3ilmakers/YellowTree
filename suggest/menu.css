@@ -1,0 +1,48 @@
+body {
+  margin-top: 10%;
+}
+
+
+
+/*----------------------
+      SUGGESTION DIV
+-----------------------*/
+#suggest {
+  height: 300px;
+  position: relative;
+
+}
+
+.sep-sugg{
+  width:300px;
+  height:300px;
+  text-align: center;
+  display: inline-block;
+  margin-top:20px;
+  margin-bottom: 20px;
+}
+.suggfilm {
+  position: relative;
+  display: contents;
+
+
+}
+
+.suggfilm img {
+  height:100%;
+  width: auto;
+  transition-duration: 0.5s;
+}
+
+.suggfilm img:hover {
+  filter:brightness(0.3);
+  transition-duration: 0.5s;
+}
+
+.label{
+  color: white;
+  height: 100%;
+  width: 100%;
+  position: relative;
+
+}
