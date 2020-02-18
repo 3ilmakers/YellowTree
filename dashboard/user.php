@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="../dashboard/dashboard.css">
+      <link rel="stylesheet" href="./dashboard/dashboard.css">
     <title>YellowTree</title>
   </head>
   <body>
@@ -20,7 +19,7 @@
     $lastname = "";
     $password ="";
     $cnnx = new PDO('mysql:dbname=yellowtree;host=localhost','yellowtree','yellow');
-    $sql = $cnnx -> prepare("SELECT * FROM `users` WHERE username = :username ");
+    $sql = $cnnx -> prepare("SELECT * FROM `USERS` WHERE username = :username ");
     $sql -> execute([':username' => $_SESSION['username']]);
     $users = $sql -> fetchAll();
     foreach($users as $user){
@@ -37,7 +36,7 @@
       <i id=\"userhead\" class=\"fas fa-user\"></i>
       <h1>My Account</h1>
       <div class=\"container\">
-        <form action=\"update.php\" method=\"POST\">
+        <form action=\"./?dashboard=user\" method=\"POST\">
         <div class=\"hr\"></div>
         <p>Username</p>
         <p>@".$username."</p>
@@ -73,7 +72,7 @@
 
   }
   else{
-    header('location: ../navbar/navbar.php');
+    header('location: ./index.php');
   }
   ?>
 

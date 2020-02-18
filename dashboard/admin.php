@@ -5,18 +5,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="../dashboard/dashboard.css">
-    
+    <link rel="stylesheet" href="./dashboard/dashboard.css">
+
     <title>YellowTree</title>
   </head>
   <body>
-    <?php 
+    <?php
     session_start();
     if(isset($_SESSION['type']) && $_SESSION['type'] == "admin"){}
     else{
-      header('location: ../navbar/navbar.php');
+      header('location: ../index.php');
     }
     ?>
     <div class="container-fluid">
@@ -37,9 +35,9 @@
         </ul>
       </div>
       <div class="col-9 rounded" id="mainpanel">
-        
+
         <h4 id="maintext">Change users type</h4>
-        
+
         <form method="GET" action="<?php echo $_SERVER["PHP_SELF"];?>" class="text-center rounded">
         <input type="text" id="input" class="rounded" name="username" placeholder="Enter Username">
         <input type="submit" id="btn" value="Search" class="rounded">
@@ -49,7 +47,7 @@
 
           <div class="text-center">
             <div class="row">
-           <?php 
+           <?php
      class user{
        public $uname ;
        public $fname ;
@@ -100,11 +98,11 @@ if($_SESSION['type'] == "admin"){
     $users = $sql -> fetchAll();
     foreach($users as $user){
       $usersarray[] = new user($user['username'] , $user['firstname'], $user['lastname'], $user['email'], $user['type'],$user['password']);
-      
-      
-       
+
+
+
     }
-    
+
     var_dump($usertodisplay);
     foreach($usersarray as $usertodisplay){
      // $usertodisplay -> display();
@@ -113,31 +111,31 @@ if($_SESSION['type'] == "admin"){
 
 }
 else {
-    echo "get lost son of a bitch"; 
+    echo "get lost son of a bitch";
 }
-    ?> 
-             
-             
-              
-             
+    ?>
+
+
+
+
             </div>
-            
+
           </div>
-         
+
         </div>
         <div class="yellowhr"></div>
         <?php
           $nbadmin = 0;
           $nbuser = 0;
           $cnnx = new PDO('mysql:dbname=yellowtree;host=localhost','yellowtree','yellow');
-          $sql = $cnnx -> prepare("SELECT COUNT(username) as nbadmin FROM users WHERE type = \"admin\";");
+          $sql = $cnnx -> prepare("SELECT COUNT(username) as nbadmin FROM USERS WHERE type = \"admin\";");
           $sql -> execute();
           $admins = $sql -> fetchAll();
           foreach($admins as $admin){
             $nbadmin =$nbadmin + $admin['nbadmin'];
           }
           $sql = null;
-          $sql = $cnnx -> prepare("SELECT COUNT(username) as nbuser FROM users WHERE type = \"user\";");
+          $sql = $cnnx -> prepare("SELECT COUNT(username) as nbuser FROM USERS WHERE type = \"user\";");
           $sql -> execute();
           $users = $sql -> fetchAll();
           //print_r($users);
@@ -148,21 +146,21 @@ else {
           echo "<script type=\"text/javascript\">
           google.charts.load('current', {'packages':['corechart']});
           google.charts.setOnLoadCallback(drawChart);
-    
+
           function drawChart() {
-    
+
             var data = google.visualization.arrayToDataTable([
               ['Users', 'Type of users'],
               ['User', '".$nbuser."'],
               ['Admin', '".$nbadmin."']
             ]);
-    
+
             var options = {
               title: 'User Repartition'
             };
-    
+
             var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-    
+
             chart.draw(data, options);
           }
         </script>
@@ -173,8 +171,8 @@ else {
 
 
 
-        
-        
+
+
         ?>
       </div>
     </div>
@@ -183,18 +181,18 @@ else {
   <div class="modal" tabindex="-1" role="dialog" id="modifyusertype">
     <div id="modalbg" class="container rounded" width="50px">
       <div class="text-center">
-        <img src="../assets/logotop.png" width="160px" height="160px">
+        <img src="./assets/logotop.png" width="160px" height="160px">
         <div class="hr"></div>
-        
+
         <br>
         <p id="targetusername"> Username </p>
         <div class="hr"></div>
 
-        
+
         <div class="custom-control custom-switch">
-         
+
           <input type="checkbox" class="custom-control-input" id="customSwitch1">
-         
+
         </div>
         <br>
         <div class="yellowhr"></div>
@@ -205,7 +203,7 @@ else {
   </div>
 
     <!-- Optional JavaScript -->
-    
+
     <script src="dashboard.js"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://kit.fontawesome.com/4dded3e0b7.js"></script>
@@ -214,4 +212,3 @@ else {
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   </body>
 </html>
-
