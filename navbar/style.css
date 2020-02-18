@@ -12,10 +12,16 @@ body{
 
 }
 
-
+#correction-top {
+  height:40px;
+  width:100%;
+  position: relative;
+  
+}
 
 nav{
     background-color: black;
+    position:fixed;
 }
 
 nav a {

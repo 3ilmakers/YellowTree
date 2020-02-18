@@ -12,6 +12,7 @@
   </head>
   <body>
     <header>
+      <div id="correction-top"></div>
       <nav class="navbar fixed-top navbar-expand-lg ">
         <a class="navbar-brand" href="./">
           <img src="./assets/logo.jpg" width="40" height="40" class="d-inline-block align-top" alt="">
