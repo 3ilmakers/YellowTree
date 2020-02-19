@@ -17,10 +17,18 @@
 <!--<body >-->
 <?php
 
-if (isset($_SESSION['type']) && $_SESSION['type'] == "admin") {
+if(isset($_SESSION['type']))
+{
+    if ($_SESSION['type'] != "admin")
+        if(!headers_sent())  header('location: ../index.php');
 } else {
-  
+
+  if(!headers_sent()) header('location: ../index.php');
+  echo "HELL";
+
 }
+
+
 ?>
 <div class="container-fluid">
   <div class="row">
@@ -108,8 +116,8 @@ if (isset($_SESSION['type']) && $_SESSION['type'] == "admin") {
               if($username == ":all"){
                 $username = "";
               }
-              
-              
+
+
               $username = "%" . $username . "%";
               $count = 0;
               //$usersarray[] = new user("","","","","","");
@@ -185,19 +193,19 @@ if (isset($_SESSION['type']) && $_SESSION['type'] == "admin") {
                     backgroundColor: [
                         'rgba(255, 239, 62, 0.2)',
                         'rgba(255, 255, 255, 0.2)'
-                        
+
                     ],
                     borderColor: [
                         'rgba(255, 239, 62, 1)',
                         'rgba(255, 255, 255, 1)'
-                      
+
                     ],
                     borderWidth: 1
                 }]
             },
             options: {
                 scales: {
-                   
+
                 }
             }
         });
@@ -211,7 +219,7 @@ if (isset($_SESSION['type']) && $_SESSION['type'] == "admin") {
 
 
         ?>
-        
+
       </div>
     </div>
   </div>

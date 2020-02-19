@@ -48,8 +48,10 @@
 
           </form>
           <?php
-          session_start();
+
+        
       if(isset($_SESSION['username']) && isset($_SESSION['type'])){
+
         echo " <form action=\"./navbar/logout.php\" class=\"form-inline my-2 my-lg-0\">
         <button id=\"logoutbtn\" class=\"btn my-2 my-sm-0 btn-outline\" type=\"submit\">Log Out</a>
       </form>";
@@ -80,6 +82,7 @@
             <button id=\"signupbtn\" class=\"btn my-2 my-sm-0 btn-outline\" type=\"button\" data-toggle=\"modal\"
               data-target=\"#signupModal\">Sign Up</a>
           </form>";
+
       }
     ?>
         </div>
