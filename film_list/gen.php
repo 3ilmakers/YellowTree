@@ -70,7 +70,7 @@ function dump_IMDb($arg_1)
                 return;
             }
 
-            $cnnx = mysqli_connect("localhost", "root", "root") or die("sql user error");
+            $cnnx = mysqli_connect("localhost", "yellowtree", "yellow") or die("sql user error");
             mysqli_select_db($cnnx,"yellowtree") or die("db non trouver");
 
             if (exist_film($obj->Title, $obj->Year, $cnnx)) { echo "FILMEXIST"; return; }
@@ -146,7 +146,7 @@ function check_all_actors($arg_1,$cnnx,$idmovie)
 
   foreach ($nom as &$actor) {
     $actor = str_replace( "'", "", $actor);
-    if($actor[0]==" ") $actor = str_replace( " ", "", $actor,1);
+   // if($actor[0]==" ") $actor = str_replace( " ", "", $actor,1);
       echo "actor :".$actor."<br>";
       if( exist_actor($actor,$cnnx) )  echo "EXIST";
       else create_actor($actor,$cnnx);
