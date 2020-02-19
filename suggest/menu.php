@@ -12,8 +12,8 @@ foreach($films as $film){
 
   <div class="sep-sugg">
     <div class="suggfilm">
-      <img src="<?php print_r($film['posterurl']); ?>" ></img>
-      <div class="label"><?php print_r($film['title']); ?></div>
+      <img src="<?php print_r($film['posterurl']); ?>" alt="<?php print_r($film['title']); ?>"></img>
+
     </div>
   </div>
 

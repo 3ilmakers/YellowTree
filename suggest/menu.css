@@ -1,5 +1,5 @@
 body {
-  
+
 }
 
 
@@ -37,12 +37,4 @@ body {
 .suggfilm img:hover {
   filter:brightness(0.3);
   transition-duration: 0.5s;
-}
-
-.label{
-  color: white;
-  height: 100%;
-  width: 100%;
-  position: relative;
-
 }
