@@ -1,0 +1,121 @@
+body {
+    margin-top: 20px;
+}
+
+#listItem {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.item {
+    padding: 5px 2px 5px 2px;
+}
+
+.listBottom {
+    height: 10%;
+    background-color: black;
+}
+
+.listBottom:hover {
+    height: auto;
+}
+
+.item img {
+    transition: 0.5s;
+}
+
+.item img:hover {
+    cursor: pointer;
+    filter: brightness(0.3);
+    transition: 0.5s;
+}
+
+body {
+    width: 100%;
+    background-color: #000;
+    color: white;
+}
+
+h2 {
+    color: #FFEF3E;
+}
+
+table {
+    border-color: #FFEF3E;
+    color: #FFEF3E;
+    border-style: dashed;
+    text-align: center;
+}
+
+a {
+    color: #FFEF3E;
+}
+
+a:hover {
+    color: #FFEF3E;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+/*-------------------------------------
+    DIV CLASS
+  --------------------------------------*/
+
+.thumbnail {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+
+.actor {
+    width: 100px;
+    height: 200px;
+    margin: 10px;
+    position: relative;
+    display: inline-block;
+    vertical-align: text-top;
+}
+
+
+/*----------------------------------------
+        DIV id par ordre d'apparition
+  -----------------------------------------*/
+
+#vote {
+    color: #FFEF3E;
+    right: 10px;
+    position: absolute;
+    size: 19px;
+}
+
+#poster_img {
+    height: 400px;
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    /* top | right | bottom | left */
+    /*margin: -20px 20px 0 20px;*/
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+}
+
+#burn {
+    margin-top: 400px;
+    background-color: rgba(0, 0, 0, 0.5);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 1));
+    position: relative;
+    z-index: 1000;
+    height: 70px;
+}
+
+#corpus {
+    margin-top: 0px;
+    padding: 20px;
+    z-index: 1000;
+    background-color: black;
+    position: relative;
+}
