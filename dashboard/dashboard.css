@@ -5,6 +5,7 @@
  html body{
     background-color: black;
     height: 100%;
+    scroll-behavior: smooth
     
 }
 .row{
@@ -181,3 +182,38 @@ li{
 #dashboardbtn{
     display: inline-block;
 }
+
+#inputmovie{
+    background-color: var(--yellowtree);
+    color: black;
+    border-color: var(--yellowtree);
+    border-style: solid;
+    width: 60%;
+}
+
+#inputmovie::placeholder{
+    background-color: var(--yellowtree);
+    color: black;
+    border-color: var(--yellowtree);
+    border-style: solid;
+
+}
+
+#btnmovie{
+    border-color: var(--yellowtree);
+    background-color: black;
+    color: var(--yellowtree);
+    border-style: solid;
+    width: 30%;
+}
+
+.changebtn{
+    border-color: var(--yellowtree);
+    background-color: black;
+    color: var(--yellowtree);
+    border-style: solid;
+    width: 30%;
+    margin-bottom: 2%;
+
+}
+

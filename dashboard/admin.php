@@ -8,8 +8,9 @@
 
   <!-- Bootstrap CSS -->
   <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
-  <link rel="stylesheet" href="./dashboard/dashboard.css">
+  
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+  <link rel="stylesheet" href="./dashboard/dashboard.css">
 
 
   <title>YellowTree</title>
@@ -29,7 +30,9 @@ if(isset($_SESSION['type']))
 
 
 ?>
+
 <div class="container-fluid">
+<a id="top" style="display: hidden";></a>
   <div class="row">
   <div style="position: relative;" class="col-3 rounded"></div>
   <div id="sidebar" class="col-3 rounded">
@@ -39,7 +42,7 @@ if(isset($_SESSION['type']))
         </li>
         <div class="hr"></div>
         <li class="rounded hover">
-          <a><i class="	fas fa-desktop"></i><span> Users</span></a>
+          <a href="#top"><i class="	fas fa-desktop"></i><span> Users</span></a>
         </li>
         <div class="hr"></div>
         <li class="rounded hover">
@@ -81,15 +84,23 @@ if(isset($_SESSION['type']))
                 $this->type = $type;
                 $this->pword = $pword;
               }
-
+              function getOpposite(){
+                if($this->type == "admin"){
+                  return "user";
+                }
+                else{
+                  return "admin";
+                }
+              }
               function display()
               {
                 echo "<div class=\"col-4\">
-          <div id=\"containeruser\" data-toggle=\"modal\" data-target=\"#modifyusertype\" class=\"text-center rounded\">
+          <div id=\"containeruser\" class=\"text-center rounded\">
+          <form method=\"GET\" action=\" ".$_SERVER["PHP_SELF"]."\">
             <div class=\"hr\"></div>
             <i  class=\"fas fa-user userimg\"></i>
             <div class=\"hr\"></div>
-            <p  class=\"userdesc username\">Username : " . $this->uname . "</p>
+            <p name=\" usernametomodify \"  class=\"userdesc username\">Username : " . $this->uname . "</p>
             <div class=\"hr\"></div>
             <p class=\"userdesc\">First Name : " . $this->fname . "</p>
             <div class=\"hr\"></div>
@@ -99,13 +110,15 @@ if(isset($_SESSION['type']))
             <div class=\"hr\"></div>
             <p class=\"userdesc\">Password : " . $this->pword . "</p>
             <div class=\"hr\"></div>
-            <p class=\"userdesc\">Type : " . $this->type . "</p>
+            <p name=\"typetomodify\" class=\"userdesc\">Type : " . $this->type . "</p>
             <div class=\"hr\"></div>
+            <button class=\"rounded changebtn\" type=\"submit\" >switch to ".$this->getOpposite()."</button>
           </div>
         </div>";
               }
             }
 
+           
             if ($_SESSION['type'] == "admin") {
               $count = 0;
               if(isset($_GET['username'])){
@@ -280,30 +293,19 @@ if(isset($_SESSION['type']))
 
         ?>
         <div class="yellowhr"></div>
-        <a id="movieselection" class="container">
-          <p>blablabla</p>
-      </a>
+        <a id="movieselection" style="display : hidden; "></a>
+        <form method="GET" action="<?php echo $_SERVER["PHP_SELF"]; ?>" class="text-center rounded">
+        <input type="text" id="inputmovie" class="rounded" name="title" placeholder="Enter movie title">
+        <input type="submit" id="btnmovie" value="Search" class="rounded">
+      </form>
+      <div class="yellowhr"></div>
 
       </div>
     </div>
   </div>
 
-  <div class="modal" tabindex="-1" role="dialog" id="modifyusertype">
-    <div id="modalbg" class="container rounded" width="50px">
-      <div class="text-center">
-        <img src="./assets/logotop.png" width="160px" height="160px">
-        <div class="hr"></div>
+ 
 
-        <br>
-        <p id="targetusername"> Username </p>
-        <div class="hr"></div>
-
-        <br>
-        <div class="yellowhr"></div>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 
