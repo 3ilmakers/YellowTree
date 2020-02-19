@@ -24,7 +24,6 @@ if(isset($_SESSION['type']))
 } else {
 
   if(!headers_sent()) header('location: ../index.php');
-  echo "HELL";
 
 }
 
