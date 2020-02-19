@@ -16,18 +16,18 @@
 </head>
 <!--<body >-->
 <?php
-/*
+
 if(isset($_SESSION['type']))
 {
     if ($_SESSION['type'] != "admin")
-        if(!headers_sent())  header('location: ./index.php');
+        if(!headers_sent())  header('location: ../index.php');
 } else {
 
-  if(!headers_sent()) header('location: google.com');
+  if(!headers_sent()) header('location: ../index.php');
   echo "HELL";
 
 }
-*/
+
 
 ?>
 <div class="container-fluid">
