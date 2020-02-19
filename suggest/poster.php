@@ -54,7 +54,14 @@
       $poster = $postered['posterurl'];
       $title = $postered['title'];
       $synopsis = $postered['synopsis'];
+      $runtime = $postered['runtime'];
+      $genre = $postered['genre'];
+      $director = $postered['director'];
+      $production = $postered['production'];
+      $releaseyear = $postered['releaseyear'];
     }
+
+
     ?>
 
     <div id="poster_img" style="background-image: url('<?php echo $poster; ?>'); text-align: center;" onclick="video()" > <!---onmouseover="video_trON()" onmouseout="video_trOFF()">-->
@@ -79,22 +86,53 @@
       <h2><?php echo $title; ?></h2>
       <p><?php echo $synopsis; ?></p>
       <!----------------------------->
+      <h2>Technical details</h2>
+      <table width="60%" >
+      <tr>
+          <td>runtime</td>
+          <td ><?php echo $runtime; ?></td>
+      </tr>
+      <tr>
+          <td>release year</td>
+          <td><?php echo $releaseyear; ?></td>
+      </tr>
+      <tr>
+          <td>genre</td>
+          <td><?php echo $genre; ?></td>
+      </tr>
+      <tr>
+          <td>director</td>
+          <td><?php echo $director; ?></td>
+      </tr>
+      <tr>
+          <td>production</td>
+          <td><?php echo $production; ?></td>
+      </tr>
+
+    </table>
+
       <h2>Actor</h2>
+      <?php
 
-      <div class="actor">
-        <img class="thumbnail" src="../assets/actor/jhon_travolta.jpg"></img>
-        <p>John Travolta</p>
-      </div>
+      $cnnx = new PDO('mysql:dbname=yellowtree;host=localhost','yellowtree','yellow');
 
-      <div class="actor">
-        <img class="thumbnail" src="../assets/actor/samuel_l_jackson.jpg"></img>
-        <p>Samuel L. Jackson</p>
-      </div>
 
-      <div class="actor">
-        <img class="thumbnail" src="../assets/actor/uma_thurman.jpg"></img>
-        <p>Uma Thurman</p>
-      </div>
+      $sql = $cnnx -> prepare("SELECT * FROM `ACTOR` INNER JOIN `ACT` ON ACTOR.idactor=ACT.idactor where idmovie=:idmovie");
+      $sql -> execute([':idmovie' => $_GET['idmovie']]);
+      $actors = $sql -> fetchAll();
+      foreach ($actors as $actor) {
+
+        echo "    <div class='actor'>
+              <img class='thumbnail' src='".$actor['actorurl']."'></img>
+              <p>".$actor['name']."</p>
+            </div>";
+      }
+
+
+      ?>
+
+
+
 
 
     </div>

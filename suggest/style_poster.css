@@ -39,7 +39,7 @@ a:hover {
   border-radius: 50%;
   width: 100px;
   height: 100px;
-
+  text-indent: -50%;
 }
 
 .actor {
@@ -49,6 +49,7 @@ a:hover {
     position: relative;
     display: inline-block;
     vertical-align:  text-top;
+
 }
 
 

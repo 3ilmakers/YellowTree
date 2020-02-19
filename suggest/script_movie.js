@@ -1,13 +1,13 @@
 $(document).ready(function() {
 
     $(".item").click(function() {
-        var nbElements = $(".item").length;
-        if (nbElements > 12) {
-            while (nbElements >= 12) {
+      /*  var nbElements = $(".item").length;
+       if (nbElements > 22) {
+            while (nbElements >= 22) {
                 $($(".item").eq(nbElements)).remove();
                 nbElements--;
             }
-        }
+        }*/
 
         $("#listItem").addClass("fixed-bottom");
         $("#listItem").addClass("listBottom");
