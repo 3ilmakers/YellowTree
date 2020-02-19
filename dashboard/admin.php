@@ -43,7 +43,7 @@ if(isset($_SESSION['type']))
         </li>
         <div class="hr"></div>
         <li class="rounded hover">
-          <a><i class="	fas fa-video"></i><span> Movies</span></a>
+          <a href="#movieselection"><i class="	fas fa-video"></i><span> Movies</span></a>
         </li>
       </ul>
     </div>
@@ -279,6 +279,10 @@ if(isset($_SESSION['type']))
 
 
         ?>
+        <div class="yellowhr"></div>
+        <a id="movieselection" class="container">
+          <p>blablabla</p>
+      </a>
 
       </div>
     </div>
