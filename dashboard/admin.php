@@ -19,6 +19,7 @@
 
 if (isset($_SESSION['type']) && $_SESSION['type'] == "admin") {
 } else {
+  
 }
 ?>
 <div class="container-fluid">
