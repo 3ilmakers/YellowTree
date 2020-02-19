@@ -108,6 +108,7 @@ if(isset($_SESSION['type']))
             }
 
             if ($_SESSION['type'] == "admin") {
+              $count = 0;
               if(isset($_GET['username'])){
               $username = $_GET['username'];
               if($username == ""){
@@ -117,9 +118,68 @@ if(isset($_SESSION['type']))
                 $username = "";
               }
 
+              if($username == ":admin"){
+                $cnnx = new PDO('mysql:dbname=yellowtree;host=localhost', 'yellowtree', 'yellow');
+                $sql = $cnnx->prepare("SELECT * FROM `USERS` WHERE type LIKE :admin ");
+                $admin = "admin";
+                $sql->execute([':admin' =>  $admin]);
+                $users = $sql->fetchAll();
+                $usersarray = null;
+                foreach ($users as $user) {
+                  $usersarray[] = new user($user['username'], $user['firstname'], $user['lastname'], $user['email'], $user['type'], $user['password']);
+                }
+                if($usersarray != null){
+                if (sizeof($usersarray) > 3) {
+                  foreach ($usersarray as $usertodisplay) {
+                    $count++;
+                    $usertodisplay->display();
+                    if ($count % 3 == 0) {
+                      echo "<div class=\"w-100\"></div>";
+                    }
+                  }
+                } else {
+                  foreach ($usersarray as $usertodisplay) {
+                    $usertodisplay->display();
+                  }
+                }
+              }
+              $cnnx = null;
+
+              }
+              if($username == ":user"){
+                $cnnx = new PDO('mysql:dbname=yellowtree;host=localhost', 'yellowtree', 'yellow');
+                $sql = $cnnx->prepare("SELECT * FROM `USERS` WHERE type LIKE :admin ");
+                $admin = "user";
+                $sql->execute([':admin' =>  $admin]);
+                $users = $sql->fetchAll();
+                $usersarray = null;
+                foreach ($users as $user) {
+                  $usersarray[] = new user($user['username'], $user['firstname'], $user['lastname'], $user['email'], $user['type'], $user['password']);
+                }
+                if($usersarray != null){
+                if (sizeof($usersarray) > 3) {
+                  foreach ($usersarray as $usertodisplay) {
+                    $count++;
+                    $usertodisplay->display();
+                    if ($count % 3 == 0) {
+                      echo "<div class=\"w-100\"></div>";
+                    }
+                  }
+                } else {
+                  foreach ($usersarray as $usertodisplay) {
+                    $usertodisplay->display();
+                  }
+                }
+              }
+              $cnnx = null;
+
+              }
+
+
+
 
               $username = "%" . $username . "%";
-              $count = 0;
+              
               //$usersarray[] = new user("","","","","","");
               //echo $_GET['username'];
               $cnnx = new PDO('mysql:dbname=yellowtree;host=localhost', 'yellowtree', 'yellow');
@@ -145,6 +205,7 @@ if(isset($_SESSION['type']))
                 }
               }
             }
+            $cnnx = null;
           }
         }
             ?>
