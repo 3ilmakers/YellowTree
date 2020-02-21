@@ -9,8 +9,7 @@
   <!-- Bootstrap CSS -->
   <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
   
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+  
   <link rel="stylesheet" href="./dashboard/dashboard.css">
 
 
@@ -117,17 +116,14 @@ if (isset($_SESSION['type'])) {
 
             <script>
               function updateType(username, type) {
-                $.post({
-                  url: "changetype.php",
-                   data: {username: username, type: type},
-                  success: function(response) {
+                $.post("changetype.php", {username: username, type: type}, function(response) {
 
                     // You will get response from your PHP page (what you echo or print)
                   },
-                  error: function(jqXHR, textStatus, errorThrown) {
+                   function(jqXHR, textStatus, errorThrown) {
                     console.log(textStatus, errorThrown);
                   }
-                });
+                );
 
 
               }
