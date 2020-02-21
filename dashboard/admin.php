@@ -9,6 +9,7 @@
   <!-- Bootstrap CSS -->
   <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
   
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
   <link rel="stylesheet" href="./dashboard/dashboard.css">
 
@@ -18,24 +19,22 @@
 <!--<body >-->
 <?php
 
-if(isset($_SESSION['type']))
-{
-    if ($_SESSION['type'] != "admin")
-        if(!headers_sent())  header('location: ../index.php');
+if (isset($_SESSION['type'])) {
+  if ($_SESSION['type'] != "admin")
+    if (!headers_sent())  header('location: ../index.php');
 } else {
 
-  if(!headers_sent()) header('location: ../index.php');
-
+  if (!headers_sent()) header('location: ../index.php');
 }
 
 
 ?>
 
 <div class="container-fluid">
-<a id="top" style="display: hidden";></a>
+  <a id="top" style="display: hidden" ;></a>
   <div class="row">
-  <div style="position: relative;" class="col-3 rounded"></div>
-  <div id="sidebar" class="col-3 rounded">
+    <div style="position: relative;" class="col-3 rounded"></div>
+    <div id="sidebar" class="col-3 rounded">
       <ul>
         <li class="rounded">
           <h4>Welcome Back</h4>
@@ -84,11 +83,11 @@ if(isset($_SESSION['type']))
                 $this->type = $type;
                 $this->pword = $pword;
               }
-              function getOpposite(){
-                if($this->type == "admin"){
+              function getOpposite()
+              {
+                if ($this->type == "admin") {
                   return "user";
-                }
-                else{
+                } else {
                   return "admin";
                 }
               }
@@ -96,7 +95,6 @@ if(isset($_SESSION['type']))
               {
                 echo "<div class=\"col-4\">
           <div id=\"containeruser\" class=\"text-center rounded\">
-          <form method=\"GET\" action=\" ".$_SERVER["PHP_SELF"]."\">
             <div class=\"hr\"></div>
             <i  class=\"fas fa-user userimg\"></i>
             <div class=\"hr\"></div>
@@ -108,118 +106,133 @@ if(isset($_SESSION['type']))
             <div class=\"hr\"></div>
             <p class=\"userdesc\">Email : " . $this->email . " </p>
             <div class=\"hr\"></div>
-            <p class=\"userdesc\">Password : " . $this->pword . "</p>
-            <div class=\"hr\"></div>
             <p name=\"typetomodify\" class=\"userdesc\">Type : " . $this->type . "</p>
             <div class=\"hr\"></div>
-            <button class=\"rounded changebtn\" type=\"submit\" >switch to ".$this->getOpposite()."</button>
+            <button onclick=\"updateType(' " . $this->uname . "','" . $this->type . "')\"  class=\"rounded changebtn\" type=\"button\" >switch to " . $this->getOpposite() . " </button>
           </div>
         </div>";
               }
             }
+            ?>
 
-           
+            <script>
+              function updateType(username, type) {
+                $.post({
+                  url: "changetype.php",
+                   data: {username: username, type: type},
+                  success: function(response) {
+
+                    // You will get response from your PHP page (what you echo or print)
+                  },
+                  error: function(jqXHR, textStatus, errorThrown) {
+                    console.log(textStatus, errorThrown);
+                  }
+                });
+
+
+              }
+            </script>
+
+            <?php
             if ($_SESSION['type'] == "admin") {
               $count = 0;
-              if(isset($_GET['username'])){
-              $username = $_GET['username'];
-              if($username == ""){
-                $username = "*********";
-              }
-              if($username == ":all"){
-                $username = "";
-              }
+              if (isset($_GET['username'])) {
+                $username = $_GET['username'];
+                if ($username == "") {
+                  $username = "*********";
+                }
+                if ($username == ":all") {
+                  $username = "";
+                }
 
-              if($username == ":admin"){
+                if ($username == ":admin") {
+                  $cnnx = new PDO('mysql:dbname=yellowtree;host=localhost', 'yellowtree', 'yellow');
+                  $sql = $cnnx->prepare("SELECT * FROM `USERS` WHERE type LIKE :admin ");
+                  $admin = "admin";
+                  $sql->execute([':admin' =>  $admin]);
+                  $users = $sql->fetchAll();
+                  $usersarray = null;
+                  foreach ($users as $user) {
+                    $usersarray[] = new user($user['username'], $user['firstname'], $user['lastname'], $user['email'], $user['type'], $user['password']);
+                  }
+                  if ($usersarray != null) {
+                    if (sizeof($usersarray) > 3) {
+                      foreach ($usersarray as $usertodisplay) {
+                        $count++;
+                        $usertodisplay->display();
+                        if ($count % 3 == 0) {
+                          echo "<div class=\"w-100\"></div>";
+                        }
+                      }
+                    } else {
+                      foreach ($usersarray as $usertodisplay) {
+                        $usertodisplay->display();
+                      }
+                    }
+                  }
+                  $cnnx = null;
+                }
+                if ($username == ":user") {
+                  $cnnx = new PDO('mysql:dbname=yellowtree;host=localhost', 'yellowtree', 'yellow');
+                  $sql = $cnnx->prepare("SELECT * FROM `USERS` WHERE type LIKE :admin ");
+                  $admin = "user";
+                  $sql->execute([':admin' =>  $admin]);
+                  $users = $sql->fetchAll();
+                  $usersarray = null;
+                  foreach ($users as $user) {
+                    $usersarray[] = new user($user['username'], $user['firstname'], $user['lastname'], $user['email'], $user['type'], $user['password']);
+                  }
+                  if ($usersarray != null) {
+                    if (sizeof($usersarray) > 3) {
+                      foreach ($usersarray as $usertodisplay) {
+                        $count++;
+                        $usertodisplay->display();
+                        if ($count % 3 == 0) {
+                          echo "<div class=\"w-100\"></div>";
+                        }
+                      }
+                    } else {
+                      foreach ($usersarray as $usertodisplay) {
+                        $usertodisplay->display();
+                      }
+                    }
+                  }
+                  $cnnx = null;
+                }
+
+
+
+
+                $username = "%" . $username . "%";
+
+                //$usersarray[] = new user("","","","","","");
+                //echo $_GET['username'];
                 $cnnx = new PDO('mysql:dbname=yellowtree;host=localhost', 'yellowtree', 'yellow');
-                $sql = $cnnx->prepare("SELECT * FROM `USERS` WHERE type LIKE :admin ");
-                $admin = "admin";
-                $sql->execute([':admin' =>  $admin]);
+                $sql = $cnnx->prepare("SELECT * FROM `USERS` WHERE username LIKE :username ");
+                $sql->execute([':username' =>  $username]);
                 $users = $sql->fetchAll();
                 $usersarray = null;
                 foreach ($users as $user) {
                   $usersarray[] = new user($user['username'], $user['firstname'], $user['lastname'], $user['email'], $user['type'], $user['password']);
                 }
-                if($usersarray != null){
-                if (sizeof($usersarray) > 3) {
-                  foreach ($usersarray as $usertodisplay) {
-                    $count++;
-                    $usertodisplay->display();
-                    if ($count % 3 == 0) {
-                      echo "<div class=\"w-100\"></div>";
+                if ($usersarray != null) {
+                  if (sizeof($usersarray) > 3) {
+                    foreach ($usersarray as $usertodisplay) {
+                      $count++;
+                      $usertodisplay->display();
+                      if ($count % 3 == 0) {
+                        echo "<div class=\"w-100\"></div>";
+                      }
+                    }
+                  } else {
+                    foreach ($usersarray as $usertodisplay) {
+                      $usertodisplay->display();
                     }
                   }
-                } else {
-                  foreach ($usersarray as $usertodisplay) {
-                    $usertodisplay->display();
-                  }
                 }
-              }
-              $cnnx = null;
-
-              }
-              if($username == ":user"){
-                $cnnx = new PDO('mysql:dbname=yellowtree;host=localhost', 'yellowtree', 'yellow');
-                $sql = $cnnx->prepare("SELECT * FROM `USERS` WHERE type LIKE :admin ");
-                $admin = "user";
-                $sql->execute([':admin' =>  $admin]);
-                $users = $sql->fetchAll();
-                $usersarray = null;
-                foreach ($users as $user) {
-                  $usersarray[] = new user($user['username'], $user['firstname'], $user['lastname'], $user['email'], $user['type'], $user['password']);
-                }
-                if($usersarray != null){
-                if (sizeof($usersarray) > 3) {
-                  foreach ($usersarray as $usertodisplay) {
-                    $count++;
-                    $usertodisplay->display();
-                    if ($count % 3 == 0) {
-                      echo "<div class=\"w-100\"></div>";
-                    }
-                  }
-                } else {
-                  foreach ($usersarray as $usertodisplay) {
-                    $usertodisplay->display();
-                  }
-                }
-              }
-              $cnnx = null;
-
-              }
-
-
-
-
-              $username = "%" . $username . "%";
-              
-              //$usersarray[] = new user("","","","","","");
-              //echo $_GET['username'];
-              $cnnx = new PDO('mysql:dbname=yellowtree;host=localhost', 'yellowtree', 'yellow');
-              $sql = $cnnx->prepare("SELECT * FROM `USERS` WHERE username LIKE :username ");
-              $sql->execute([':username' =>  $username]);
-              $users = $sql->fetchAll();
-              $usersarray = null;
-              foreach ($users as $user) {
-                $usersarray[] = new user($user['username'], $user['firstname'], $user['lastname'], $user['email'], $user['type'], $user['password']);
-              }
-              if($usersarray != null){
-              if (sizeof($usersarray) > 3) {
-                foreach ($usersarray as $usertodisplay) {
-                  $count++;
-                  $usertodisplay->display();
-                  if ($count % 3 == 0) {
-                    echo "<div class=\"w-100\"></div>";
-                  }
-                }
-              } else {
-                foreach ($usersarray as $usertodisplay) {
-                  $usertodisplay->display();
-                }
+                $cnnx = null;
               }
             }
-            $cnnx = null;
-          }
-        }
             ?>
 
 
@@ -232,7 +245,7 @@ if(isset($_SESSION['type']))
 
         <div class="yellowhr"></div>
         <div width="40vh" height="40vh" class="container">
-        <canvas id="myChart" width="40vh" height="40vh"></canvas>
+          <canvas id="myChart" width="40vh" height="40vh"></canvas>
         </div>
         <?php
         $nbadmin = 0;
@@ -262,7 +275,7 @@ if(isset($_SESSION['type']))
                 labels: ['Admin', 'User'],
                 datasets: [{
                     label: '# of Votes',
-                    data: [".$nbadmin." , ".$nbuser."],
+                    data: [" . $nbadmin . " , " . $nbuser . "],
                     backgroundColor: [
                         'rgba(255, 239, 62, 0.2)',
                         'rgba(255, 255, 255, 0.2)'
@@ -292,32 +305,34 @@ if(isset($_SESSION['type']))
 
 
         ?>
+
+
         <div class="yellowhr"></div>
         <a id="movieselection" style="display : hidden; "></a>
         <form method="GET" action="<?php echo $_SERVER["PHP_SELF"]; ?>" class="text-center rounded">
-        <input type="text" id="inputmovie" class="rounded" name="title" placeholder="Enter movie title">
-        <input type="submit" id="btnmovie" value="Search" class="rounded">
-      </form>
-      <div class="yellowhr"></div>
+          <input type="text" id="inputmovie" class="rounded" name="title" placeholder="Enter movie title">
+          <input type="submit" id="btnmovie" value="Search" class="rounded">
+        </form>
+        <div class="yellowhr"></div>
 
       </div>
     </div>
   </div>
 
- 
 
 
 
 
 
-<!-- Optional JavaScript -->
+
+  <!-- Optional JavaScript -->
 
 
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://kit.fontawesome.com/4dded3e0b7.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-<!--</body>-->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://kit.fontawesome.com/4dded3e0b7.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <!--</body>-->
 
 </html>
