@@ -9,6 +9,7 @@
   </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="./suggest/script_movie.js"></script>
+  <link rel="stylesheet" href="./suggest/style_movie.css">
 
   <body>
     <div id="poster_img"  >
@@ -27,7 +28,7 @@ foreach($films as $film){
 
 
        <div class="item text-center col-xl-2 col-md-3 col-4">
-           <img src="<?php print_r($film['posterurl']); ?>" alt="<?php print_r($film['title']); ?>" class="img-fluid rounded" onclick="poster(<?php echo $film['idmovie']; ?>)">
+           <img src="<?php print_r($film['posterurl']); ?>" alt="<?php print_r($film['title']); ?>" class="img-fluid rounded " onclick="poster(<?php echo $film['idmovie']; ?>)">
        </div>
 
 
