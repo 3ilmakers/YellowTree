@@ -11,10 +11,13 @@ else{
     $sql = $cnnx -> prepare("SELECT type , username FROM `USERS` WHERE email = :email AND password = :password ");
     $sql -> execute([':email' => $email, ':password' => $password]);
     $type = $sql -> fetchAll();
+    echo "TYPES : " . $types;
+    if($types=="") header('location: ../index.php?login_status=wrong');
     foreach($type as $types){
+      //if($types['type']=="" && $types['username']=="")   header('location: ../index.php');
          $_SESSION['type'] = $types['type'] ;
          $_SESSION['username'] = $types['username'] ;
-        }
+    }
         if(isset($_SESSION['type']) && isset($_SESSION['username'])){
             header('location: ../index.php');
             $cnnx = null;
