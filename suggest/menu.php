@@ -17,11 +17,24 @@
     </div>
   <!--  <div id="suggest">-->
       <div id="listItem" class="row" style="background-color:black; overflow-x: auto;">
+
+
 <?php
 $cnnx = new PDO('mysql:dbname=yellowtree;host=localhost','yellowtree','yellow');
-$sql = $cnnx -> prepare("SELECT title, idmovie, posterurl FROM `MOVIE` ");
-$sql -> execute();
+if(!isset($_GET['search'])) {
+  $sql = $cnnx -> prepare("SELECT title, idmovie, posterurl FROM `MOVIE` ");
+  $sql -> execute();
+} else {
+  $search = "%" . $_GET['search'] . "%";
+  $search = str_replace(" ", "%", $search);
+  $sql = $cnnx -> prepare("SELECT * FROM `MOVIE` where title like :title or genre like :genre  or director like :director ");
+  $sql->execute([':title' =>  $search, ':genre' =>  $search, ':director' =>  $search]);
+}
+
+
 $films = $sql -> fetchAll();
+if(sizeof($films)==0) include("./suggest/not_found.php");
+
 foreach($films as $film){
 ?>
 

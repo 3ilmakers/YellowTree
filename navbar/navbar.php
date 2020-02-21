@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="./navbar/style.css">
-    
+
 
   </head>
   <body>
@@ -41,7 +41,7 @@
             </li>-->
 
           </ul>
-          <form method="GET" action="./navbar/search.php" class="form-inline my-2 my-lg-0">
+          <form method="GET" action="./" class="form-inline my-2 my-lg-0">
             <input  class="btn my-2 my-sm-0 btn-outline searchbtn" name="search" type="text">
             <button id="lookupbtn"  type="submit" class="btn my-2 my-sm-0 btn-outline"><i style="color:#FFEF3E;"class="fas fa-search"></i></button>
           </form>
@@ -50,7 +50,7 @@
           </form>
           <?php
 
-        
+
       if(isset($_SESSION['username']) && isset($_SESSION['type'])){
 
         echo " <form action=\"./navbar/logout.php\" class=\"form-inline my-2 my-lg-0\">
