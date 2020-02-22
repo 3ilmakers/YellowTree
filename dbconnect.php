@@ -1,5 +1,4 @@
 <?php
-include './dashboard/admin.php';
 class connection
 {
 
@@ -104,6 +103,6 @@ class connection
 
         $sql = $this->cnnx->prepare("UPDATE `USERS` SET `email`= :email,`firstname`= :firstname,`lastname`= :lastname ,`password`= :password WHERE username = :username ");
         $sql->execute([':email' => $email, ':firstname' => $firstname, ':lastname' => $lastname, ':password' => $password, ':username' => $_SESSION['username']]);
-        
+
     }
 }
