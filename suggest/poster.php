@@ -89,23 +89,23 @@
       <h2>Technical details</h2>
       <table width="60%" >
       <tr>
-          <td>runtime</td>
+          <td>Runtime</td>
           <td ><?php echo $runtime; ?></td>
       </tr>
       <tr>
-          <td>release year</td>
+          <td>Release year</td>
           <td><?php echo $releaseyear; ?></td>
       </tr>
       <tr>
-          <td>genre</td>
+          <td>Genre</td>
           <td><?php echo $genre; ?></td>
       </tr>
       <tr>
-          <td>director</td>
+          <td>Director</td>
           <td><?php echo $director; ?></td>
       </tr>
       <tr>
-          <td>production</td>
+          <td>Production</td>
           <td><?php echo $production; ?></td>
       </tr>
 
