@@ -2,7 +2,7 @@
 
 $type = $_POST['type'];
 $username = $_POST['username'];
-echo "+".$username."+ was updated to +".$type."+<br>";
+
 
 $changedtype = "";
 if($type == "admin"){
@@ -16,5 +16,5 @@ $cnnx = new PDO('mysql:dbname=yellowtree;host=localhost', 'yellowtree', 'yellow'
 $sql = $cnnx->prepare("UPDATE USERS SET type = :type WHERE username = :username");
 $sql -> execute([':type' => $changedtype ,':username' => $username]);
 $cnnx = null;
-echo "+".$username."+ was updated to +".$changedtype."+";
+echo $username." was updated to ".$changedtype;
 ?>

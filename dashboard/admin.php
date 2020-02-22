@@ -109,7 +109,7 @@ if (isset($_SESSION['type'])) {
             <div class=\"hr\"></div>
             <p name=\"typetomodify\" class=\"userdesc\">Type : " . $this->type . "</p>
             <div class=\"hr\"></div>
-            <button onclick=\"updateType('" . $this->uname. "+" .  $this->type . "')\"  class=\"rounded changebtn\" type=\"button\" >switch to " . $this->getOpposite() . " </button>
+            <button onclick=\"updateType('" . $this->uname. ":" .  $this->type . "')\"  class=\"rounded changebtn\" type=\"button\" >switch to " . $this->getOpposite() . " </button>
           </div>
         </div>";
               }
@@ -118,15 +118,15 @@ if (isset($_SESSION['type'])) {
 
             <script>
               function updateType(paramgen) {
-                  var res = paramgen.split("+");
+                  var res = paramgen.split(":");
                 $.post("./dashboard/changetype.php",
                   {
                     username: res[0],
                     type: res[1]
                   },
                   function(data, status) {
-                    alert( data + "\nStatus: " + status + "\nancien type:"+res[0]+"+"+res[1]);
-
+                    alert( data + "\nStatus: " + status );
+                    location.reload();
                   });
               }
             </script>
