@@ -64,6 +64,8 @@ if (isset($_SESSION['type'])) {
           <div class="row">
 
             <?php
+
+            include('../dbconnect.php');
             class user
             {
               public $uname;
@@ -245,7 +247,12 @@ if (isset($_SESSION['type'])) {
         <?php
         $nbadmin = 0;
         $nbuser = 0;
-        $cnnx = new PDO('mysql:dbname=yellowtree;host=localhost', 'yellowtree', 'yellow');
+        $cnnx = new connection();
+        $nbadmins = $cnnx->getNumberOf("admin");
+        $nbusers = $cnnx->getNumberOf("user");
+        $cnnx->kill();
+       
+        /*$cnnx = new PDO('mysql:dbname=yellowtree;host=localhost', 'yellowtree', 'yellow');
         $sql = $cnnx->prepare("SELECT COUNT(username) as nbadmin FROM USERS WHERE type = \"admin\";");
         $sql->execute();
         $admins = $sql->fetchAll();
@@ -259,7 +266,7 @@ if (isset($_SESSION['type'])) {
         //print_r($users);
         foreach ($users as $user) {
           $nbuser = $nbuser + $user['nbuser'];
-        }
+        }*/
 
         echo "<script>
         console.log(\"herro\");
