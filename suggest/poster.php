@@ -108,7 +108,6 @@
           <td>Production</td>
           <td><?php echo $production; ?></td>
       </tr>
-
     </table>
 
       <h2>Actor</h2>
