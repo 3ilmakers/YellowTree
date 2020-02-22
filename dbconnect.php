@@ -51,6 +51,7 @@
             foreach ($users as $user) {
                 $nbuser = $nbuser + $user['nbuser'];
             }
+            return $nbuser;
         }
         
 

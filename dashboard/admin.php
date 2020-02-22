@@ -65,7 +65,7 @@ if (isset($_SESSION['type'])) {
 
             <?php
 
-            include '../../Final_Yellowtree/dbconnect.php';
+            
             class user
             {
               public $uname;
@@ -256,8 +256,9 @@ if (isset($_SESSION['type'])) {
         $nbadmin = 0;
         $nbuser = 0;
         $cnnx = new connection();
-        $nbadmins = $cnnx->getNumberOf("admin");
-        $nbusers = $cnnx->getNumberOf("user");
+        $nbadmin = $cnnx->getNumberOf("admin");
+        $nbuser = $cnnx->getNumberOf("user");
+
         $cnnx->kill();
        
         /*$cnnx = new PDO('mysql:dbname=yellowtree;host=localhost', 'yellowtree', 'yellow');

@@ -2,6 +2,7 @@
   session_start();
 ini_set('display_errors', 'On');
 require_once("./header.php");
+include "./dbconnect.php";
 
   require_once("./navbar/navbar.php");
   if(isset($_GET['login_status'])){
