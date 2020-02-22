@@ -65,7 +65,7 @@ if (isset($_SESSION['type'])) {
 
             <?php
 
-            include('../dbconnect.php');
+            include '../../Final_Yellowtree/dbconnect.php';
             class user
             {
               public $uname;
@@ -143,7 +143,7 @@ if (isset($_SESSION['type'])) {
                 }
 
                 if ($username == ":admin") {
-                  $cnnx = new PDO('mysql:dbname=yellowtree;host=localhost', 'yellowtree', 'yellow');
+                 /* $cnnx = new PDO('mysql:dbname=yellowtree;host=localhost', 'yellowtree', 'yellow');
                   $sql = $cnnx->prepare("SELECT * FROM `USERS` WHERE type LIKE :admin ");
                   $admin = "admin";
                   $sql->execute([':admin' =>  $admin]);
@@ -151,7 +151,10 @@ if (isset($_SESSION['type'])) {
                   $usersarray = null;
                   foreach ($users as $user) {
                     $usersarray[] = new user($user['username'], $user['firstname'], $user['lastname'], $user['email'], $user['type'], $user['password']);
-                  }
+                  }*/
+                  $cnnx = new connection();
+                  $usersarray = $cnnx->getAllAdmin();
+                  $cnnx->kill();
                   if ($usersarray != null) {
                     if (sizeof($usersarray) > 3) {
                       foreach ($usersarray as $usertodisplay) {
@@ -167,10 +170,9 @@ if (isset($_SESSION['type'])) {
                       }
                     }
                   }
-                  $cnnx = null;
                 }
                 if ($username == ":user") {
-                  $cnnx = new PDO('mysql:dbname=yellowtree;host=localhost', 'yellowtree', 'yellow');
+                /*  $cnnx = new PDO('mysql:dbname=yellowtree;host=localhost', 'yellowtree', 'yellow');
                   $sql = $cnnx->prepare("SELECT * FROM `USERS` WHERE type LIKE :admin ");
                   $admin = "user";
                   $sql->execute([':admin' =>  $admin]);
@@ -178,7 +180,10 @@ if (isset($_SESSION['type'])) {
                   $usersarray = null;
                   foreach ($users as $user) {
                     $usersarray[] = new user($user['username'], $user['firstname'], $user['lastname'], $user['email'], $user['type'], $user['password']);
-                  }
+                  }*/
+                  $cnnx = new connection();
+                  $usersarray = $cnnx->getAllUser();
+                  $cnnx->kill();
                   if ($usersarray != null) {
                     if (sizeof($usersarray) > 3) {
                       foreach ($usersarray as $usertodisplay) {
@@ -204,14 +209,17 @@ if (isset($_SESSION['type'])) {
 
                 //$usersarray[] = new user("","","","","","");
                 //echo $_GET['username'];
-                $cnnx = new PDO('mysql:dbname=yellowtree;host=localhost', 'yellowtree', 'yellow');
+               /* $cnnx = new PDO('mysql:dbname=yellowtree;host=localhost', 'yellowtree', 'yellow');
                 $sql = $cnnx->prepare("SELECT * FROM `USERS` WHERE username LIKE :username ");
                 $sql->execute([':username' =>  $username]);
                 $users = $sql->fetchAll();
                 $usersarray = null;
                 foreach ($users as $user) {
                   $usersarray[] = new user($user['username'], $user['firstname'], $user['lastname'], $user['email'], $user['type'], $user['password']);
-                }
+                }*/
+                $cnnx = new connection();
+               $usersarray=  $cnnx->getUserByUsername($username);
+                $cnnx->kill();
                 if ($usersarray != null) {
                   if (sizeof($usersarray) > 3) {
                     foreach ($usersarray as $usertodisplay) {

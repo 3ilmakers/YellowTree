@@ -1,8 +1,8 @@
 <?php 
-
- class connection(){
+    include './dashboard/admin.php';
+ class connection {
     
-     $cnnx;
+    public $cnnx;
 
     function __construct(){
         $this->cnnx  = new PDO('mysql:dbname=yellowtree;host=localhost', 'yellowtree', 'yellow');
@@ -54,6 +54,44 @@
         }
         
 
+    }
+
+    function getAllAdmin(){
+        $sql = $this->cnnx->prepare("SELECT * FROM `USERS` WHERE type LIKE :admin ");
+        $admin = "admin";
+        $sql->execute([':admin' =>  $admin]);
+        $users = $sql->fetchAll();
+        $usersarray = null;
+        foreach ($users as $user) {
+          $usersarray[] = new user($user['username'], $user['firstname'], $user['lastname'], $user['email'], $user['type'], $user['password']);
+        }
+        return $usersarray ;
+    }
+
+    function getAllUser(){
+        $sql = $this->cnnx->prepare("SELECT * FROM `USERS` WHERE type LIKE :admin ");
+        $admin = "user";
+        $sql->execute([':admin' =>  $admin]);
+        $users = $sql->fetchAll();
+        $usersarray = null;
+        foreach ($users as $user) {
+          $usersarray[] = new user($user['username'], $user['firstname'], $user['lastname'], $user['email'], $user['type'], $user['password']);
+        }
+
+        return $usersarray;
+    }
+
+    function getUserByUsername($username){
+       
+                $sql = $this->cnnx->prepare("SELECT * FROM `USERS` WHERE username LIKE :username ");
+                $sql->execute([':username' =>  $username]);
+                $users = $sql->fetchAll();
+                $usersarray = null;
+                foreach ($users as $user) {
+                  $usersarray[] = new user($user['username'], $user['firstname'], $user['lastname'], $user['email'], $user['type'], $user['password']);
+                }
+
+        return $usersarray;
     }
 
 }
