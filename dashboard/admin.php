@@ -46,6 +46,10 @@ if (isset($_SESSION['type'])) {
         <li class="rounded hover">
           <a href="#movieselection"><i class="	fas fa-video"></i><span> Movies</span></a>
         </li>
+        <div class="hr"></div>
+        <li class="rounded hover">
+          <a href="./dashboard/addmovie.php"><i class="fas fa-ticket-alt"></i><span> Add Movies</span> </a>
+        </li>
       </ul>
     </div>
     <div class="col-9 rounded" id="mainpanel">
@@ -129,6 +133,8 @@ if (isset($_SESSION['type'])) {
                     location.reload();
                   });
               }
+
+             
             </script>
 
             <?php

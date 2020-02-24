@@ -114,5 +114,6 @@ class connection
     function addMovie($title, $releaseyear, $posterurl, $synopsis, $runtime, $genre, $director, $production){
         $sql = $this->cnnx->prepare("INSERT INTO `movie`( `title`, `releaseyear`, `posterurl`, `synopsis`, `runtime`, `genre`, `director`, `production`) VALUES (:title,:releaseyear,:posterurl,:synopsis,:runtime,:genre,:director,:production)");
         $sql->execute([':title' => $title,':releaseyear'=>$releaseyear,':posterurl'=> $posterurl,':synopsis'=>$synopsis,':runtime'=>$runtime, ':genre'=>$genre,':director'=>$director,':production'=>$production]);
+        header('location: ../index.php');
     }   
 }
