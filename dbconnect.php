@@ -105,4 +105,9 @@ class connection
         $sql->execute([':email' => $email, ':firstname' => $firstname, ':lastname' => $lastname, ':password' => $password, ':username' => $_SESSION['username']]);
 
     }
+
+    function addMovie($title, $releaseyear, $posterurl, $synopsis, $runtime, $genre, $director, $production){
+        $sql = $this->cnnx->prepare("INSERT INTO `movie`( `title`, `releaseyear`, `posterurl`, `synopsis`, `runtime`, `genre`, `director`, `production`) VALUES (:title,:releaseyear,:posterurl,:synopsis,:runtime,:genre,:director,:production)");
+        $sql->execute([':title' => $title,':releaseyear'=>$releaseyear,':posterurl'=> $posterurl,':synopsis'=>$synopsis,':runtime'=>$runtime, ':genre'=>$genre,':director'=>$director,':production'=>$production]);
+    }   
 }
