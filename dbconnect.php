@@ -116,4 +116,17 @@ class connection
         $sql->execute([':title' => $title,':releaseyear'=>$releaseyear,':posterurl'=> $posterurl,':synopsis'=>$synopsis,':runtime'=>$runtime, ':genre'=>$genre,':director'=>$director,':production'=>$production]);
         header('location: ../index.php');
     }   
+
+    function getMoviesByTitle($title){
+        $sql = $this->cnnx->prepare("SELECT * FROM `movie` WHERE title like :title");
+        $sql->execute([':title' => $title]);
+        $movies = $sql->fetchAll();
+        $result = null;
+        foreach($movies as $movie){
+            $result[] = new movie($movie['idmovie'],$movie['title'],$movie['posterurl'],$movie['synopsis'],$movie['runtime'],$movie['genre'],$movie['director'],$movie['production']);
+        }
+        return $result;
+
+
+    }
 }
