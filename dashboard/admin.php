@@ -325,7 +325,7 @@ if (isset($_SESSION['type'])) {
 
         <div class="yellowhr"></div>
         <a id="movieselection" style="display : hidden; "></a>
-        <form method="GET" action="./dashboard/admin.php" class="text-center rounded">
+        <form method="GET" action="<?php echo $_SERVER["PHP_SELF"]; ?>" class="text-center rounded">
           <input type="text" id="inputmovie" class="rounded" name="movietitle" placeholder="Enter movie title">
           <input type="submit" id="btnmovie" value="Search" class="rounded">
         </form>
@@ -354,7 +354,7 @@ if (isset($_SESSION['type'])) {
             $this->director = $director;
             $this->production = $production;
           }
-          function diplay()
+          function display()
           {
             echo "<div class=\"col-4\">
             <div id=\"containermovie\" class=\"text-center rounded\">
@@ -386,7 +386,7 @@ if (isset($_SESSION['type'])) {
         if ($_SESSION['type'] == "admin") {
           $count = 0;
           if (isset($_GET['movietitle'])) {
-            $inputmovie = $_GET['inputmovie'];
+            $inputmovie = $_GET['movietitle'];
             if ($inputmovie == "") {
               $inputmovie = "*********";
             }
@@ -417,8 +417,8 @@ if (isset($_SESSION['type'])) {
         }
 
 
-          
-        
+
+
 
 
         ?>

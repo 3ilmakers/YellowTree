@@ -31,6 +31,7 @@ class movie
         $cnnx = new connection();
         $cnnx->addMovie($this->title, $this->releaseyear, $this->posterurl, $this->synopsis, $this->runtime, $this->genre, $this->director, $this->production);
         $cnnx->kill();
+        header('location: ../index.php');
     }
 }
     if (isset($_POST['title'])) {
