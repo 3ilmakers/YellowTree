@@ -386,7 +386,7 @@ if (isset($_SESSION['type'])) {
         if ($_SESSION['type'] == "admin") {
           $count = 0;
           if (isset($_GET['movietitle'])) {
-            $inputmovie = $_GET['inputmovie'];
+            $inputmovie = $_GET['movietitle'];
             if ($inputmovie == "") {
               $inputmovie = "*********";
             }
