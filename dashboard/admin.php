@@ -325,7 +325,7 @@ if (isset($_SESSION['type'])) {
 
         <div class="yellowhr"></div>
         <a id="movieselection" style="display : hidden; "></a>
-        <form method="GET" action="<?php echo $_SERVER["PHP_SELF"]; ?>" class="text-center rounded">
+        <form method="GET" action="./dashboard/admin.php" class="text-center rounded">
           <input type="text" id="inputmovie" class="rounded" name="movietitle" placeholder="Enter movie title">
           <input type="submit" id="btnmovie" value="Search" class="rounded">
         </form>
