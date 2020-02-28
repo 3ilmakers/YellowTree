@@ -1,0 +1,4 @@
+find ./ -name '*.*'  -exec cat {} \; | wc -l
+
+---
+without /.git/ /assets/

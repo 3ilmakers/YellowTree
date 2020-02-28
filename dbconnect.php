@@ -130,7 +130,22 @@ class connection
 
     }
 
-    public function setRate($rate,$movie,$user){
-        $sql = $this->cnnx->prepare("INSERT INTO `rate`(`username`, `idmovie`, `value`) VALUES ([value-1],[value-2],[value-3])");
+
+    public function setRate($user,$movie,$rate){
+        //Avoid hacks via JS
+        if($rate>0) $rate=1;
+        if($rate<0) $rate=-1;
+        //Verification if user already votes
+        $sql = $this->cnnx->prepare("SELECT * FROM `RATE` WHERE username=:username AND idmovie=:idmovie");
+        $sql->execute([':username' =>  $username, ':idmove' => $idmovie]);
+        $rates = $sql->fetchAll();
+        if( $rates == null) {
+            $sql = $this->cnnx->prepare("INSERT INTO `RATE`(`username`, `idmovie`, `rate`) VALUES (:usernme,:idmovie,:rate)");
+            $sql->execute([':username' => $username,':idmovie'=>$idmovie,':rate'=> $rate]);
+        }
+        else if($rates[0]->rate == $rate) {
+                  $sql = $this->cnnx->prepare("UPDATE `RATE` SET `rate`= :rate, WHERE username = :username AND idmovie = :idmovie ");
+                  $sql->execute([':username' => $username,':idmovie'=>$idmovie,':rate'=> $rate]);
+        }
     }
 }
