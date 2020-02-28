@@ -129,4 +129,8 @@ class connection
 
 
     }
+
+    public function setRate($rate,$movie,$user){
+        $sql = $this->cnnx->prepare("INSERT INTO `rate`(`username`, `idmovie`, `value`) VALUES ([value-1],[value-2],[value-3])");
+    }
 }
