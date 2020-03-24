@@ -11,7 +11,7 @@
   </head>
   <body>
   <?php
-  
+
   if(isset($_SESSION['username'])){
     $username = "";
     $email = "";
@@ -27,7 +27,7 @@
       $email = $user['email'];
       $firstname = $user['firstname'];
       $lastname = $user['lastname'];
-      $password = $user['password'];
+      //$password = $user['password'];
 
     }
 
@@ -55,7 +55,10 @@
         <br>
         <div class=\"hr\"></div>
         <p>Password</p>
-        <input name=\"password\" class=\"inputinverted rounded\" type=\"password\" value=\"".$password."\">
+        <input name=\"password\" class=\"inputinverted rounded\" type=\"password\" value=\"\">
+        <br>
+        <p>Re-type password</p>
+        <input name=\"passwordcheck\" class=\"inputinverted rounded\" type=\"password\" value=\"\">
         <br>
         <div class=\"hr\"></div>
         <br>

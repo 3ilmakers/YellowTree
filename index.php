@@ -2,14 +2,11 @@
   session_start();
 ini_set('display_errors', 'On');
 require_once("./header.php");
+require_once("./dbconnect.php");
 
   require_once("./navbar/navbar.php");
-  if(isset($_GET['login_status'])){
-      if($_GET['login_status']=="wrong") {
-        echo "<script> alert(\"wrong login\");</script>";
-      }
-  }
-?>
+
+  ?>
 
 <?php
 if(isset($_GET['dashboard']))
@@ -37,7 +34,16 @@ else {
 }
 
 
-/**/
-
+/* ERROR SECTION*/
+if(isset($_GET['login_status'])){
+    if($_GET['login_status']=="wrong") {
+      echo "<script> alert(\"wrong login\");</script>";
+    }
+}
+if(isset($_GET['update_status'])){
+    if($_GET['update_status']=="wrong_check") {
+      echo "<script>alert('wrong password due to typing')</script>";
+    }
+}
 
  ?>

@@ -109,6 +109,9 @@
 #containeruser{
     background-color: var(--yellowtree);
 }
+#containermovie{
+    background-color: var(--yellowtree);
+}
 
 #userslider{
     margin-top: 2%;

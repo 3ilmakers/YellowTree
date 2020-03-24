@@ -167,7 +167,7 @@ footer{
     color: var(--yellowtree);
     border-bottom-style: solid;
     border-bottom-color:var(--yellowtree) ;
-
+    
 
 }
 
@@ -179,7 +179,11 @@ footer{
     color: #FFEF3E;
     background-color: black;
 }
+.searchbtn::focus:hover{
+    color: #FFEF3E;
+    background-color: black;
 
+}
 #lookupbtn{
     background-color: black;
     color: var(--yellowtree);

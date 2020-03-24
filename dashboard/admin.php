@@ -46,6 +46,10 @@ if (isset($_SESSION['type'])) {
         <li class="rounded hover">
           <a href="#movieselection"><i class="	fas fa-video"></i><span> Movies</span></a>
         </li>
+        <div class="hr"></div>
+        <li class="rounded hover">
+          <a href="./dashboard/addmovie.php"><i class="fas fa-ticket-alt"></i><span> Add Movies</span> </a>
+        </li>
       </ul>
     </div>
     <div class="col-9 rounded" id="mainpanel">
@@ -64,6 +68,8 @@ if (isset($_SESSION['type'])) {
           <div class="row">
 
             <?php
+
+
             class user
             {
               public $uname;
@@ -107,7 +113,7 @@ if (isset($_SESSION['type'])) {
             <div class=\"hr\"></div>
             <p name=\"typetomodify\" class=\"userdesc\">Type : " . $this->type . "</p>
             <div class=\"hr\"></div>
-            <button onclick=\"updateType(' " . $this->uname . "','" . $this->type . "')\"  class=\"rounded changebtn\" type=\"button\" >switch to " . $this->getOpposite() . " </button>
+            <button onclick=\"updateType('" . $this->uname . ":" .  $this->type . "')\"  class=\"rounded changebtn\" type=\"button\" >switch to " . $this->getOpposite() . " </button>
           </div>
         </div>";
               }
@@ -115,14 +121,15 @@ if (isset($_SESSION['type'])) {
             ?>
 
             <script>
-              function updateType(usernamephp, typephp) {
-
+              function updateType(paramgen) {
+                var res = paramgen.split(":");
                 $.post("./dashboard/changetype.php", {
-                    username: usernamephp,
-                    type: typephp
+                    username: res[0],
+                    type: res[1]
                   },
                   function(data, status) {
-                    alert( data + "\nStatus: " + status);
+                    alert(data + "\nStatus: " + status);
+                    location.reload();
                   });
               }
             </script>
@@ -141,7 +148,7 @@ if (isset($_SESSION['type'])) {
                 }
 
                 if ($username == ":admin") {
-                  $cnnx = new PDO('mysql:dbname=yellowtree;host=localhost', 'yellowtree', 'yellow');
+                  /* $cnnx = new PDO('mysql:dbname=yellowtree;host=localhost', 'yellowtree', 'yellow');
                   $sql = $cnnx->prepare("SELECT * FROM `USERS` WHERE type LIKE :admin ");
                   $admin = "admin";
                   $sql->execute([':admin' =>  $admin]);
@@ -149,7 +156,10 @@ if (isset($_SESSION['type'])) {
                   $usersarray = null;
                   foreach ($users as $user) {
                     $usersarray[] = new user($user['username'], $user['firstname'], $user['lastname'], $user['email'], $user['type'], $user['password']);
-                  }
+                  }*/
+                  $cnnx = new connection();
+                  $usersarray = $cnnx->getAllAdmin();
+                  $cnnx->kill();
                   if ($usersarray != null) {
                     if (sizeof($usersarray) > 3) {
                       foreach ($usersarray as $usertodisplay) {
@@ -165,10 +175,9 @@ if (isset($_SESSION['type'])) {
                       }
                     }
                   }
-                  $cnnx = null;
                 }
                 if ($username == ":user") {
-                  $cnnx = new PDO('mysql:dbname=yellowtree;host=localhost', 'yellowtree', 'yellow');
+                  /*  $cnnx = new PDO('mysql:dbname=yellowtree;host=localhost', 'yellowtree', 'yellow');
                   $sql = $cnnx->prepare("SELECT * FROM `USERS` WHERE type LIKE :admin ");
                   $admin = "user";
                   $sql->execute([':admin' =>  $admin]);
@@ -176,7 +185,10 @@ if (isset($_SESSION['type'])) {
                   $usersarray = null;
                   foreach ($users as $user) {
                     $usersarray[] = new user($user['username'], $user['firstname'], $user['lastname'], $user['email'], $user['type'], $user['password']);
-                  }
+                  }*/
+                  $cnnx = new connection();
+                  $usersarray = $cnnx->getAllUser();
+                  $cnnx->kill();
                   if ($usersarray != null) {
                     if (sizeof($usersarray) > 3) {
                       foreach ($usersarray as $usertodisplay) {
@@ -202,14 +214,17 @@ if (isset($_SESSION['type'])) {
 
                 //$usersarray[] = new user("","","","","","");
                 //echo $_GET['username'];
-                $cnnx = new PDO('mysql:dbname=yellowtree;host=localhost', 'yellowtree', 'yellow');
+                /* $cnnx = new PDO('mysql:dbname=yellowtree;host=localhost', 'yellowtree', 'yellow');
                 $sql = $cnnx->prepare("SELECT * FROM `USERS` WHERE username LIKE :username ");
                 $sql->execute([':username' =>  $username]);
                 $users = $sql->fetchAll();
                 $usersarray = null;
                 foreach ($users as $user) {
                   $usersarray[] = new user($user['username'], $user['firstname'], $user['lastname'], $user['email'], $user['type'], $user['password']);
-                }
+                }*/
+                $cnnx = new connection();
+                $usersarray =  $cnnx->getUserByUsername($username);
+                $cnnx->kill();
                 if ($usersarray != null) {
                   if (sizeof($usersarray) > 3) {
                     foreach ($usersarray as $usertodisplay) {
@@ -245,7 +260,13 @@ if (isset($_SESSION['type'])) {
         <?php
         $nbadmin = 0;
         $nbuser = 0;
-        $cnnx = new PDO('mysql:dbname=yellowtree;host=localhost', 'yellowtree', 'yellow');
+        $cnnx = new connection();
+        $nbadmin = $cnnx->getNumberOf("admin");
+        $nbuser = $cnnx->getNumberOf("user");
+
+        $cnnx->kill();
+
+        /*$cnnx = new PDO('mysql:dbname=yellowtree;host=localhost', 'yellowtree', 'yellow');
         $sql = $cnnx->prepare("SELECT COUNT(username) as nbadmin FROM USERS WHERE type = \"admin\";");
         $sql->execute();
         $admins = $sql->fetchAll();
@@ -259,7 +280,7 @@ if (isset($_SESSION['type'])) {
         //print_r($users);
         foreach ($users as $user) {
           $nbuser = $nbuser + $user['nbuser'];
-        }
+        }*/
 
         echo "<script>
         console.log(\"herro\");
@@ -305,10 +326,102 @@ if (isset($_SESSION['type'])) {
         <div class="yellowhr"></div>
         <a id="movieselection" style="display : hidden; "></a>
         <form method="GET" action="<?php echo $_SERVER["PHP_SELF"]; ?>" class="text-center rounded">
-          <input type="text" id="inputmovie" class="rounded" name="title" placeholder="Enter movie title">
+          <input type="text" id="inputmovie" class="rounded" name="movietitle" placeholder="Enter movie title">
           <input type="submit" id="btnmovie" value="Search" class="rounded">
         </form>
         <div class="yellowhr"></div>
+        <?php class movie
+        {
+          public $idmovie;
+          public $title;
+          public $releaseyear;
+          public $posterurl;
+          public $synopsis;
+          public $runtime;
+          public $genre;
+          public $director;
+          public $production;
+
+          function __construct($idmovie, $title, $releaseyear, $posterurl, $synopsis, $runtime, $genre, $director, $production)
+          {
+            $this->idmovie = $idmovie;
+            $this->title = $title;
+            $this->releaseyear = $releaseyear;
+            $this->posterurl = $posterurl;
+            $this->synopsis = $synopsis;
+            $this->runtime = $runtime;
+            $this->genre = $genre;
+            $this->director = $director;
+            $this->production = $production;
+          }
+          function display()
+          {
+            echo "<div class=\"col-4\">
+            <div id=\"containermovie\" class=\"text-center rounded\">
+              <div class=\"hr\"></div>
+              <div>
+                <img src=\"" . $this->posterurl . "\" class=\"rounded\" height=\"200px\">
+              </div>
+              <div class=\"hr\"></div>
+              <p name=\" usernametomodify \"  class=\"userdesc username\">IdMovie : " . $this->idmovie . "</p>
+              <div class=\"hr\"></div>
+              <p class=\"userdesc\">Title : " . $this->title . "</p>
+              <div class=\"hr\"></div>
+              <p class=\"userdesc\">Release Year : " . $this->releaseyear . "</p>
+              <div class=\"hr\"></div>
+              <p class=\"userdesc\">Synopsis : " . $this->synopsis . " </p>
+              <div class=\"hr\"></div>
+              <p  class=\"userdesc\">Runtime : " . $this->runtime . "</p>
+              <div class=\"hr\"></div>
+              <p  class=\"userdesc\">Genre : " . $this->genre . "</p>
+              <div class=\"hr\"></div>
+              <p  class=\"userdesc\">Director : " . $this->director . "</p>
+              <div class=\"hr\"></div>
+              <p  class=\"userdesc\">Production : " . $this->production . "</p>
+            </div>
+          </div>";
+          }
+        }
+
+        if ($_SESSION['type'] == "admin") {
+          $count = 0;
+          if (isset($_GET['movietitle'])) {
+            $inputmovie = $_GET['movietitle'];
+            if ($inputmovie == "") {
+              $inputmovie = "*********";
+            }
+            if ($inputmovie == ":all") {
+              $inputmovie = "";
+            }
+            $inputmovie = "%" . $inputmovie . "%";
+            $cnnx = new connection();
+            $moviesarray =  $cnnx->getMoviesByTitle($inputmovie);
+            $cnnx->kill();
+            if ($moviesarray != null) {
+              if (sizeof($moviesarray) > 3) {
+                foreach ($moviesarray as $moviestodisplay) {
+                  $count++;
+                  $moviestodisplay->display();
+                  if ($count % 3 == 0) {
+                    echo "<div class=\"w-100\"></div>";
+                  }
+                }
+              } else {
+                foreach ($moviesarray as $moviestodisplay) {
+                  $moviestodisplay->display();
+                }
+              }
+            }
+            $cnnx = null;
+          }
+        }
+
+
+
+
+
+
+        ?>
 
       </div>
     </div>
