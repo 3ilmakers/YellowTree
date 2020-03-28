@@ -19,7 +19,7 @@ class motor
     //deamon side - write letter by letter from title
     function write_word()
     {
-		$sql = $this->cnnx->prepare("SELECT idmovie, title FROM `MOVIE` LIMIT 5");
+		$sql = $this->cnnx->prepare("SELECT idmovie, title FROM `MOVIE`");
 		$sql->execute();
 		$elems = $sql->fetchAll();
 		echo "[OK] Fetching from MOVIE <br>";
@@ -45,7 +45,8 @@ class motor
                 $brute[-2]=')';
                 //echo $brute;
                 $sqla = $this->cnnx->prepare($brute);
-				var_dump($sqla->execute());
+				if($sqla->execute())	echo "<span style='background:#000'><font color=#00FF>Ø</font></span>";
+				else	echo "<span style='background:#000'><font color=#FF0000>Ø</font></span>";
 				foreach($alpha_num as $k)	$k=0;
               }
           }
