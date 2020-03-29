@@ -8,7 +8,7 @@ Low priority in terms of result. Basicaly search via MySQL using
 ```MySQL
 SELECT * FROM TABLE WHERE column LIKE "%word%";
 ```
-### Title search
+### Title search (prevent mistyping)
 High priority in terms of result. <br>
 We will have a table where each column will be a letter of alphabet (and numerous) that will register how many times this letter is repeated in the title by words.
 
@@ -43,3 +43,7 @@ Now we apply substraction between reference line and the search for each letters
 and there we see that `SUM(782_DJANGO-unkwn) = SUM(782_DJANGO)-SUM(unkwn)` <br>
 and we also see that `SUM(782_UNCHAINED-unkwn) != SUM(782_UNCHAINED)-SUM(unkwn)` <br>
 then we can order our result and see that DJANGO match with JANGO
+
+## To sum-up
+
+If you type `indi` you'll find the occurence by using basic sql search. But if you mistype `indieana` then you'll find by the motor search engine.

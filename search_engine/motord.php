@@ -4,8 +4,5 @@ error_reporting(E_ALL);
   require_once './dbmotor.php';
   $cnnx = new motor();
   $cnnx->write_word();
-
-
-
   $cnnx->kill();
  ?>
