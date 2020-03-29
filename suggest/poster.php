@@ -8,9 +8,48 @@
       <!-- CSS poster -->
     <link rel="stylesheet" href="style_poster.css">
 
+    <?php
+
+    $cnnx = new PDO('mysql:dbname=yellowtree;host=localhost','yellowtree','yellow');
+    $sql = $cnnx -> prepare("SELECT * FROM `MOVIE` where idmovie=:idmovie");
+    $sql -> execute([':idmovie' => $_GET['idmovie']]);
+    $posters = $sql -> fetchAll();
+    foreach ($posters as $postered) {
+      $poster = $postered['posterurl'];
+      $title = $postered['title'];
+      $synopsis = $postered['synopsis'];
+      $runtime = $postered['runtime'];
+      $genre = $postered['genre'];
+      $director = $postered['director'];
+      $production = $postered['production'];
+      $releaseyear = $postered['releaseyear'];
+    }
+
+
+    ?>
+
     <script>
     function video() {
-      document.getElementById('poster_img').innerHTML = "<iframe width=\"900\" height=\"400\" src=\"https://www.youtube.com/embed/5ZAhzsi1ybM\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>"
+    <?php 	
+    function yt_trailer($search) 
+    {
+		$search = str_replace(' ','+',$search);
+		$search = str_replace('\'s','',$search);
+		$wget = file_get_contents('https://www.google.fr/search?q=trailer+'.$search);
+
+		$words = explode('https://www.youtube.com/watch?v=', $wget);
+		$words = explode(' ', $words[1]);
+		$words = explode('</div>', $words[0]);
+		return $words[0];
+	}
+	$codeyt = yt_trailer($title);
+	if( strlen($codeyt) > 12 | strlen($codeyt) < 1 )		$codeyt = yt_trailer('trailer+'.$title);
+	
+	$urltrailer =  'https://www.youtube.com/embed/'.$codeyt;
+
+    echo "document.getElementById('poster_img').innerHTML = \"<iframe width='900' height='400' src='".$urltrailer."' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>\""; 
+    ?>
+     
     }
 
     function video_trON() {
@@ -44,25 +83,7 @@
   </head>
   <body>
 
-    <?php
 
-    $cnnx = new PDO('mysql:dbname=yellowtree;host=localhost','yellowtree','yellow');
-    $sql = $cnnx -> prepare("SELECT * FROM `MOVIE` where idmovie=:idmovie");
-    $sql -> execute([':idmovie' => $_GET['idmovie']]);
-    $posters = $sql -> fetchAll();
-    foreach ($posters as $postered) {
-      $poster = $postered['posterurl'];
-      $title = $postered['title'];
-      $synopsis = $postered['synopsis'];
-      $runtime = $postered['runtime'];
-      $genre = $postered['genre'];
-      $director = $postered['director'];
-      $production = $postered['production'];
-      $releaseyear = $postered['releaseyear'];
-    }
-
-
-    ?>
 
     <div id="poster_img" style="background-image: url('<?php echo $poster; ?>'); text-align: center;" onclick="video()" > <!---onmouseover="video_trON()" onmouseout="video_trOFF()">-->
 
