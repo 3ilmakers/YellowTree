@@ -33,9 +33,24 @@ if(!isset($_GET['search'])) {
 
 
 $films = $sql -> fetchAll();
+foreach($films as $film){
+?>
+<div class="item text-center col-xl-2 col-md-3 col-4">
+           <img src="<?php print_r($film['posterurl']); ?>" alt="<?php print_r($film['title']); ?>" class="img-fluid rounded " onclick="poster(<?php echo $film['idmovie']; ?>)">
+       </div>
+<?php } 
+
+echo "<div style='position:relative; width:100%; text-align:center'><h3>Autres resultats</h3></div><br>";
+require_once './search_engine/dbmotor.php';
+$Scnnx = new motor();
+$films = $Scnnx->search_presentation($_GET['search']);
+$Scnnx->kill();
+
 if(sizeof($films)==0) include("./suggest/not_found.php");
 
-foreach($films as $film){
+foreach($films as $filmo){
+	foreach($filmo as $film) {
+		
 ?>
 
 
@@ -48,7 +63,8 @@ foreach($films as $film){
 
 
 
-<?php  } ?>
+<?php  } } ?>
+
       </div>
     </div>
   <body>

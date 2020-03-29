@@ -18,6 +18,27 @@ function display($poster , $title , $synopsis , $runtime , $genre , $director, $
     
     </div>";
 }
+/*require_once '../search_engine/dbmotor.php';
+$Scnnx = new motor();
+$tab = $Scnnx->search_presentation($_GET['search']);
+$Scnnx->kill();
+
+
+foreach($tab as $movie){
+    $poster = $movie['posterurl'];
+    $title = $movie['title'];
+    $synopsis = $movie['synopsis'];
+    $runtime = $movie['runtime'];
+    $genre = $movie['genre'];
+    $director = $movie['director'];
+    $production = $movie['production'];
+    $releaseyear = $movie['releaseyear'];
+    display($poster , $title , $synopsis , $runtime , $genre , $director, $production, $releaseyear);
+    echo "<hr>";
+  
+}*/
+
+
 
 $searchtxt = $_GET['search'];
 $searchtxt = "%".$searchtxt."%";
@@ -36,9 +57,9 @@ foreach($movies as $movie){
     $releaseyear = $movie['releaseyear'];
     display($poster , $title , $synopsis , $runtime , $genre , $director, $production, $releaseyear);
     echo "<hr>";
-
-    
+  
 }
+
 ?>
 </body>
 </html>
