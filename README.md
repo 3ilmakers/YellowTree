@@ -1,5 +1,5 @@
 # YellowTree
-database of movie ratings.
+Welcome to our movie database.
 
 ## INSTALLATION
 you required :
